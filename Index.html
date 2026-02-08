@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahamood Egaal - Software Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0a0e1a;
+            color: #e0e0e0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-size: 24px;
+            color: #00d9ff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #8892b0;
+            text-decoration: none;
+            transition: color 0.3s;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #00d9ff;
+        }
+
+        /* Section styling */
+        .section {
+            display: none;
+            animation: fadeIn 0.5s;
+            min-height: 70vh;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-number {
+            color: #00d9ff;
+            font-size: 14px;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
+
+        h1 {
+            font-size: 64px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        h2 {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 40px;
+            color: #fff;
+        }
+
+        h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        p {
+            line-height: 1.8;
+            color: #8892b0;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: #00d9ff;
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 18px 40px;
+            border: 2px solid #00d9ff;
+            background: transparent;
+            color: #00d9ff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Courier New', monospace;
+        }
+
+        .btn-primary {
+            background: #00d9ff;
+            color: #0a0e27;
+        }
+
+        .btn:hover {
+            background: #00d9ff;
+            color: #0a0e27;
+            transform: translateY(-2px);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: #00d9ff;
+        }
+
+        /* Home Section */
+        #home {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 100px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #00d9ff;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+        }
+
+        .tagline {
+            font-size: 24px;
+            color: #8892b0;
+            margin-top: 20px;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 24px;
+            background: #00d9ff;
+            animation: blink 1s infinite;
+            margin-left: 5px;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* About Section */
+        .code-block {
+            background: rgba(0, 217, 255, 0.03);
+            border: 1px solid rgba(0, 217, 255, 0.15);
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .code-comment {
+            color: #5a6b7f;
+        }
+
+        .code-key {
+            color: #00d9ff;
+        }
+
+        .code-value {
+            color: #ffd700;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background: rgba(0, 217, 255, 0.03);
+            border: 1px solid rgba(0, 217, 255, 0.15);
+            padding: 30px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: #00d9ff;
+            background: rgba(0, 217, 255, 0.08);
+        }
+
+        .project-category {
+            color: #00d9ff;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .tech-tag {
+            padding: 8px 16px;
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 4px;
+            font-size: 14px;
+            color: #8892b0;
+        }
+
+        /* Skills Section */
+        .skills-category {
+            margin-bottom: 40px;
+        }
+
+        .skills-category h4 {
+            color: #8892b0;
+            font-size: 14px;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .skill-tag {
+            padding: 12px 24px;
+            background: transparent;
+            border: 2px solid #00d9ff;
+            border-radius: 25px;
+            font-size: 16px;
+            color: #00d9ff;
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            background: #00d9ff;
+            color: #0a0e27;
+        }
+
+        /* Contact Section */
+        .contact-form {
+            max-width: 600px;
+            margin-top: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(0, 217, 255, 0.03);
+            border: 1px solid rgba(0, 217, 255, 0.15);
+            color: #e0e0e0;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #00d9ff;
+            background: rgba(0, 217, 255, 0.08);
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #5a6b7f;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 48px;
+            }
+
+            h2 {
+                font-size: 36px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div class="logo">&lt;ME /&gt;</div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showSection('home', event)" class="active">home</a></li>
+                <li><a href="#" onclick="showSection('about', event)">about</a></li>
+                <li><a href="#" onclick="showSection('projects', event)">projects</a></li>
+                <li><a href="#" onclick="showSection('skills', event)">skills</a></li>
+                <li><a href="#" onclick="showSection('contact', event)">contact</a></li>
+            </ul>
+        </nav>
+
+        <!-- HOME SECTION -->
+        <section id="home" class="section active">
+            <div class="subtitle">// SOFTWARE ENGINEER</div>
+            <h1>Mahamood<br>Egaal</h1>
+            <div class="tagline">I build software that solves real problems.<span class="cursor"></span></div>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="showSection('projects', event)">VIEW WORK</button>
+                <button class="btn" onclick="showSection('contact', event)">GET IN TOUCH</button>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="section">
+            <div class="section-number">01 // ABOUT</div>
+            <h2>Who I Am</h2>
+            <p>I'm a software engineer with <span class="highlight">3 years of experience</span> turning complex problems into elegant, scalable solutions. I work across the full stack, but I'm particularly passionate about building robust APIs and intuitive user interfaces.</p>
+            <p>When you hire me, you get someone who cares about clean code, clear communication, and delivering on time. I've worked with startups and established companies alike, and I understand that great software is about solving business problems, not just writing code.</p>
+
+            <div class="code-block">
+                <div class="code-comment">// quick_stats.json</div>
+                <br>
+                <div><span class="code-key">"experience"</span>: <span class="code-value">"3 years"</span>,</div>
+                <div><span class="code-key">"projects_delivered"</span>: <span class="code-value">25</span>,</div>
+                <div><span class="code-key">"happy_clients"</span>: <span class="code-value">15</span>,</div>
+                <div><span class="code-key">"availability"</span>: <span class="code-value">true</span></div>
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section id="projects" class="section">
+            <div class="section-number">02 // WORK</div>
+            <h2>Selected Projects</h2>
+
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-category">FULL STACK</div>
+                    <h3>Hidayat E-Learning Platform</h3>
+                    <p>Full-featured educational e-learning platform designed to deliver structured courses, interactive user experiences, and Islamic educational blog content. Includes built-in eCommerce system for selling courses and digital products, user authentication, and responsive design for seamless access across devices.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Django</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">REST API</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-category">FULL STACK</div>
+                    <h3>TaxGen AI</h3>
+                    <p>Collaborative, Chat Room-style platform designed to help users get top-tier support for their tax affairs. Users can create and join topic-based rooms to discuss tax issues in real time, share insights, and receive AI-assisted guidance. Built with focus on scalability, real-time communication, and mobile responsiveness.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Django</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">REST API</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">AI Integration</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS SECTION -->
+        <section id="skills" class="section">
+            <div class="section-number">03 // SKILLS</div>
+            <h2>Tech Stack</h2>
+
+            <div class="skills-category">
+                <h4>LANGUAGES</h4>
+                <div class="skills-grid">
+                    <span class="skill-tag">JavaScript (ES6+)</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">HTML5</span>
+                    <span class="skill-tag">CSS3</span>
+                    <span class="skill-tag">MySQL</span>
+                </div>
+            </div>
+
+            <div class="skills-category">
+                <h4>FRONTEND</h4>
+                <div class="skills-grid">
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">Tailwind CSS</span>
+                </div>
+            </div>
+
+            <div class="skills-category">
+                <h4>BACKEND</h4>
+                <div class="skills-grid">
+                    <span class="skill-tag">Django</span>
+                    <span class="skill-tag">RESTful API Design</span>
+                    <span class="skill-tag">API Integration</span>
+                </div>
+            </div>
+
+            <div class="skills-category">
+                <h4>CLOUD & DEVOPS</h4>
+                <div class="skills-grid">
+                    <span class="skill-tag">Azure</span>
+                    <span class="skill-tag">AWS</span>
+                    <span class="skill-tag">CI/CD Pipelines</span>
+                    <span class="skill-tag">Git (GitLab)</span>
+                    <span class="skill-tag">Script Automation</span>
+                    <span class="skill-tag">Agile Workflows</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="section">
+            <div class="section-number">04 // CONTACT</div>
+            <h2>Let's Work Together</h2>
+            <p>Have a project in mind? I'm currently available for freelance work. Drop me a message and let's discuss how I can help.</p>
+
+            <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="handleSubmit(event)">
+                <input type="hidden" name="form-name" value="contact">
+                <p style="display: none;">
+                    <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                </p>
+                
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" placeholder="Tell me about your project..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">SEND MESSAGE</button>
+            </form>
+        </section>
+    </div>
+
+    <script>
+        function showSection(sectionId, event) {
+            if (event) {
+                event.preventDefault();
+            }
+            
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            document.getElementById(sectionId).classList.add('active');
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const data = new FormData(form);
+            
+            fetch('/', {
+                method: 'POST',
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams(data).toString()
+            })
+            .then(() => {
+                alert('Thank you for your message! I will get back to you soon.');
+                form.reset();
+            })
+            .catch((error) => {
+                alert('Oops! There was a problem submitting your form. Please try again.');
+            });
+        }
+    </script>
+</body>
+</html>
