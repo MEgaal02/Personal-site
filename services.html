@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services — Egaal Software Solutions</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            border-radius: 10px;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s;
+        }
+
+        .service-card:hover::before { transform: scaleX(1); }
+
+        .service-card:hover {
+            border-color: var(--accent-dim);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 50px rgba(0,0,0,0.3);
+        }
+
+        .service-number {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--accent);
+            letter-spacing: 0.15em;
+            margin-bottom: 1.25rem;
+        }
+
+        .service-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            font-size: 0.92rem;
+            color: var(--text-dim);
+            line-height: 1.7;
+            margin-bottom: 1.25rem;
+        }
+
+        .service-features {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .service-feature {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .service-feature::before {
+            content: '→';
+            color: var(--accent);
+        }
+
+        /* Process */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .process-step {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .process-step:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .process-number {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            opacity: 0.3;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .process-step h3 {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .process-step p {
+            font-size: 0.82rem;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+
+        /* Full width service */
+        .service-full {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .service-full h3 {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .service-full p {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            line-height: 1.7;
+        }
+
+        .pricing-note {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .pricing-note h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-note p {
+            font-size: 1rem;
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 900px) {
+            .services-grid { grid-template-columns: 1fr; }
+            .process-grid { grid-template-columns: 1fr 1fr; }
+            .service-full { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            .process-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <a href="index.html" class="logo">&lt;<span>Egaal Software</span>/&gt;</a>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+    <div class="page-hero-tag">Our Services</div>
+    <h1>Full-Stack <span class="highlight">Web Development</span><br>from start to finish.</h1>
+    <p>We handle every layer of your application — frontend, backend, database, API, and deployment — so you can focus on growing your business.</p>
+</section>
+
+<!-- CORE SERVICES -->
+<section style="background: var(--bg-elevated); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="section-header reveal">
+        <div class="section-label">Core Services</div>
+        <h2 class="section-title">What We Build</h2>
+    </div>
+    <div class="services-grid">
+        <div class="service-card reveal">
+            <div class="service-number">01</div>
+            <h3>Frontend Development</h3>
+            <p>We craft responsive, high-performance user interfaces that look stunning on every device. Our frontends are built for speed, accessibility, and seamless user experience.</p>
+            <div class="service-features">
+                <div class="service-feature">Responsive & Mobile-First Design</div>
+                <div class="service-feature">React, JavaScript (ES6+), HTML5, CSS3</div>
+                <div class="service-feature">Tailwind CSS & Bootstrap</div>
+                <div class="service-feature">UI/UX Best Practices</div>
+                <div class="service-feature">Cross-Browser Compatibility</div>
+            </div>
+        </div>
+        <div class="service-card reveal">
+            <div class="service-number">02</div>
+            <h3>Backend Development</h3>
+            <p>Robust, scalable server-side systems that power your application. We build secure APIs, handle authentication, and architect your data layer for reliability and performance.</p>
+            <div class="service-features">
+                <div class="service-feature">Python & Django</div>
+                <div class="service-feature">RESTful API Design & Integration</div>
+                <div class="service-feature">User Authentication & Authorisation</div>
+                <div class="service-feature">Microservices Architecture</div>
+                <div class="service-feature">Data Processing Pipelines</div>
+            </div>
+        </div>
+        <div class="service-card reveal">
+            <div class="service-number">03</div>
+            <h3>Database Design</h3>
+            <p>Thoughtfully designed data models and database architecture that support your business logic and scale with your growth. We work with both relational and NoSQL databases.</p>
+            <div class="service-features">
+                <div class="service-feature">PostgreSQL & MySQL</div>
+                <div class="service-feature">MongoDB</div>
+                <div class="service-feature">Schema Design & Optimisation</div>
+                <div class="service-feature">Data Migration & Management</div>
+                <div class="service-feature">Backup & Recovery Strategies</div>
+            </div>
+        </div>
+        <div class="service-card reveal">
+            <div class="service-number">04</div>
+            <h3>Deployment & DevOps</h3>
+            <p>We don't just build your app — we ship it. Cloud deployment, automated pipelines, containerisation, and monitoring to keep your application running at peak performance.</p>
+            <div class="service-features">
+                <div class="service-feature">Azure & AWS Cloud Deployment</div>
+                <div class="service-feature">Docker & Kubernetes</div>
+                <div class="service-feature">CI/CD Pipeline Automation</div>
+                <div class="service-feature">Git & Version Control</div>
+                <div class="service-feature">Performance Monitoring</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROCESS -->
+<section>
+    <div class="section-header reveal">
+        <div class="section-label">How We Work</div>
+        <h2 class="section-title">Our Process</h2>
+    </div>
+    <div class="process-grid">
+        <div class="process-step reveal">
+            <div class="process-number">01</div>
+            <h3>Discovery</h3>
+            <p>We learn your business, understand your goals, and define project scope and requirements.</p>
+        </div>
+        <div class="process-step reveal">
+            <div class="process-number">02</div>
+            <h3>Design & Plan</h3>
+            <p>Architecture decisions, tech stack selection, wireframes, and a clear development roadmap.</p>
+        </div>
+        <div class="process-step reveal">
+            <div class="process-number">03</div>
+            <h3>Build & Iterate</h3>
+            <p>Agile development in sprints with regular demos, feedback cycles, and continuous testing.</p>
+        </div>
+        <div class="process-step reveal">
+            <div class="process-number">04</div>
+            <h3>Launch & Support</h3>
+            <p>Deployment, quality assurance, and ongoing maintenance to keep your product at its best.</p>
+        </div>
+    </div>
+</section>
+
+<!-- E-COMMERCE -->
+<section style="background: var(--bg-elevated); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="section-header reveal">
+        <div class="section-label">Specialisation</div>
+        <h2 class="section-title">E-Commerce & Platform Development</h2>
+    </div>
+    <div class="service-full reveal">
+        <div>
+            <h3>Custom Platforms Built for Your Business</h3>
+            <p>Beyond standard web development, we specialise in building complete digital platforms — e-learning systems, e-commerce stores, real-time collaboration tools, and SaaS applications. We've built platforms handling course delivery, digital product sales, real-time chat, and AI-powered features.</p>
+        </div>
+        <div class="service-features" style="padding-left: 0;">
+            <div class="service-feature">E-Learning & Course Platforms</div>
+            <div class="service-feature">E-Commerce & Digital Products</div>
+            <div class="service-feature">Real-Time Chat & Collaboration</div>
+            <div class="service-feature">AI-Assisted Features</div>
+            <div class="service-feature">Content Management Systems</div>
+            <div class="service-feature">Payment Integration</div>
+            <div class="service-feature">User Dashboards & Analytics</div>
+        </div>
+    </div>
+</section>
+
+<!-- PRICING CTA -->
+<section>
+    <div class="pricing-note reveal">
+        <h3>Every project is unique.</h3>
+        <p>We provide custom quotes based on your specific requirements, timeline, and scope. Get in touch and we'll put together a proposal within 48 hours.</p>
+        <a href="contact.html" class="btn-primary">REQUEST A QUOTE</a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <a href="index.html" class="logo">&lt;<span>Egaal Software</span>/&gt;</a>
+            <p>Software consultancy delivering scalable, secure applications. Established 2022.</p>
+        </div>
+        <div>
+            <div class="footer-heading">Pages</div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="projects.html">Projects</a>
+            </div>
+        </div>
+        <div>
+            <div class="footer-heading">Company</div>
+            <div class="footer-links">
+                <a href="team.html">Team</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+        <div>
+            <div class="footer-heading">Connect</div>
+            <div class="footer-links">
+                <a href="mailto:egaalsoftwaresolutions@builtbyegaal.com">Email</a>
+                <a href="https://github.com/MEgaal02">GitHub</a>
+                <a href="https://linkedin.com/in/mahmoodegaal">LinkedIn</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-text">© 2026 Egaal Software Solutions. All rights reserved.</div>
+        <div class="footer-association"><span>Egaal Software Solutions</span> is a trading name of TaxGen AI Ltd</div>
+    </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
