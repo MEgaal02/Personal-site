@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM Development — Egaal Software Solutions</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>.tech-item{font-family:var(--font-mono);font-size:0.75rem;padding:0.5rem 1rem;background:var(--accent-dim);color:var(--accent);border-radius:4px;letter-spacing:0.03em;}</style>
+</head>
+<body>
+
+<nav id="navbar">
+    <a href="index.html" class="logo">&lt;<span>Egaal Software</span>/&gt;</a>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" >Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li>
+            <a href="#" data-dropdown class="active">Solutions <span class="nav-arrow">▼</span></a>
+            <div class="mega-dropdown wide">
+                <div class="mega-grid">
+                    <div>
+                        <div class="mega-heading">Development</div>
+                        <a href="crm-development.html" class="mega-link"><div class="mega-link-icon">◈</div><div class="mega-link-text"><span class="mega-link-title">CRM Development</span><span class="mega-link-desc">Custom relationship management</span></div></a>
+                        <a href="inventory-management.html" class="mega-link"><div class="mega-link-icon">▦</div><div class="mega-link-text"><span class="mega-link-title">Inventory Management</span><span class="mega-link-desc">Stock & warehouse systems</span></div></a>
+                        <a href="financial-dashboards.html" class="mega-link"><div class="mega-link-icon">◇</div><div class="mega-link-text"><span class="mega-link-title">Financial Dashboards</span><span class="mega-link-desc">Real-time financial analytics</span></div></a>
+                        <a href="pos-systems.html" class="mega-link"><div class="mega-link-icon">▣</div><div class="mega-link-text"><span class="mega-link-title">POS Systems</span><span class="mega-link-desc">Point of sale solutions</span></div></a>
+                        <a href="maintenance-logs.html" class="mega-link"><div class="mega-link-icon">▤</div><div class="mega-link-text"><span class="mega-link-title">Maintenance Log Systems</span><span class="mega-link-desc">Asset tracking & scheduling</span></div></a>
+                    </div>
+                    <div>
+                        <div class="mega-heading">Engineering</div>
+                        <a href="backend-api.html" class="mega-link"><div class="mega-link-icon">⟐</div><div class="mega-link-text"><span class="mega-link-title">Backend API</span><span class="mega-link-desc">Scalable server-side systems</span></div></a>
+                        <a href="mobile-apps.html" class="mega-link"><div class="mega-link-icon">◉</div><div class="mega-link-text"><span class="mega-link-title">iOS / Android Apps</span><span class="mega-link-desc">Native & cross-platform</span></div></a>
+                        <a href="ui-ux-design.html" class="mega-link"><div class="mega-link-icon">◎</div><div class="mega-link-text"><span class="mega-link-title">UI/UX Design</span><span class="mega-link-desc">User-centred interfaces</span></div></a>
+                        <a href="bespoke-apps.html" class="mega-link"><div class="mega-link-icon">⬡</div><div class="mega-link-text"><span class="mega-link-title">Bespoke Full Stack Apps</span><span class="mega-link-desc">End-to-end custom software</span></div></a>
+                        <a href="ai-integration.html" class="mega-link"><div class="mega-link-icon">✦</div><div class="mega-link-text"><span class="mega-link-title">AI Agentic Integration</span><span class="mega-link-desc">Intelligent automation</span></div></a>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <a href="#" data-dropdown >Industries <span class="nav-arrow">▼</span></a>
+            <div class="mega-dropdown">
+                <div class="mega-single">
+                    <div class="mega-heading">Sectors We Serve</div>
+                    <a href="education.html" class="mega-link"><div class="mega-link-icon">◈</div><div class="mega-link-text"><span class="mega-link-title">Education</span><span class="mega-link-desc">E-learning platforms & tools</span></div></a>
+                    <a href="housing.html" class="mega-link"><div class="mega-link-icon">▣</div><div class="mega-link-text"><span class="mega-link-title">Housing (HMO)</span><span class="mega-link-desc">Property management CRMs</span></div></a>
+                </div>
+            </div>
+        </li>
+        <li>
+            <a href="#" data-dropdown >Company <span class="nav-arrow">▼</span></a>
+            <div class="mega-dropdown">
+                <div class="mega-single">
+                    <div class="mega-heading">About Egaal</div>
+                    <a href="team.html" class="mega-link"><div class="mega-link-icon">◉</div><div class="mega-link-text"><span class="mega-link-title">Our Team</span><span class="mega-link-desc">Meet the people behind the code</span></div></a>
+                    <a href="join.html" class="mega-link"><div class="mega-link-icon">+</div><div class="mega-link-text"><span class="mega-link-title">Join Our Team</span><span class="mega-link-desc">Apply to work with us</span></div></a>
+                </div>
+            </div>
+        </li>
+        <li><a href="contact.html" >Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+<div class="nav-overlay" id="navOverlay"></div>
+
+<section class="page-hero">
+    <div class="page-hero-tag">Solutions</div>
+    <h1>Custom <span class="highlight">CRM systems</span><br>built for your business.</h1>
+    <p>We design and develop bespoke Customer Relationship Management systems that streamline your operations, automate workflows, and give you complete visibility over your business.</p>
+</section>
+
+<section style="background: var(--bg-elevated); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="section-header reveal">
+        <div class="section-label">Key Features</div>
+        <h2 class="section-title">What We Deliver</h2>
+    </div>
+    <div class="solution-features">
+        <div class="feature-card reveal">
+            <div class="feature-icon">◈</div>
+            <h3>Client Management</h3>
+            <p>Track contacts, leads, deals, and communications in one centralised dashboard with real-time updates.</p>
+        </div>
+        <div class="feature-card reveal">
+            <div class="feature-icon">⬡</div>
+            <h3>Workflow Automation</h3>
+            <p>Automate repetitive tasks — follow-ups, reminders, status updates — so your team can focus on what matters.</p>
+        </div>
+        <div class="feature-card reveal">
+            <div class="feature-icon">◇</div>
+            <h3>Reporting & Analytics</h3>
+            <p>Custom dashboards and reports that give you actionable insights into sales, performance, and growth.</p>
+        </div>
+        <div class="feature-card reveal">
+            <div class="feature-icon">◎</div>
+            <h3>Role-Based Access</h3>
+            <p>Granular permission controls so each team member sees exactly what they need — nothing more, nothing less.</p>
+        </div>
+        <div class="feature-card reveal">
+            <div class="feature-icon">▣</div>
+            <h3>Integration Ready</h3>
+            <p>Connect with email, payment gateways, accounting software, and third-party APIs seamlessly.</p>
+        </div>
+        <div class="feature-card reveal">
+            <div class="feature-icon">▤</div>
+            <h3>Mobile Responsive</h3>
+            <p>Access your CRM from any device — desktop, tablet, or mobile — with a fully responsive interface.</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="section-header reveal">
+        <div class="section-label">Our Process</div>
+        <h2 class="section-title">How We Build It</h2>
+    </div>
+    <div class="solution-process">
+        <div class="process-step reveal">
+            <div class="process-number">01</div>
+            <h3>Discovery</h3>
+            <p>We map your business processes, identify pain points, and define the CRM scope.</p>
+        </div>
+        <div class="process-step reveal">
+            <div class="process-number">02</div>
+            <h3>Architecture</h3>
+            <p>Database design, API structure, and UI wireframes before a single line of code.</p>
+        </div>
+        <div class="process-step reveal">
+            <div class="process-number">03</div>
+            <h3>Build & Test</h3>
+            <p>Agile development in sprints with regular demos and feedback cycles.</p>
+        </div>
+        <div class="process-step reveal">
+            <div class="process-number">04</div>
+            <h3>Deploy & Support</h3>
+            <p>Cloud deployment, training, and ongoing maintenance to keep your CRM running.</p>
+        </div>
+    </div>
+</section>
+
+<section style="background: var(--bg-elevated); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+    <div class="section-header reveal">
+        <div class="section-label">Use Cases</div>
+        <h2 class="section-title">Who This Is For</h2>
+    </div>
+    <div class="solution-features">
+                <div class="feature-card reveal"><h3>Property management companies</h3></div>
+                <div class="feature-card reveal"><h3>Recruitment agencies</h3></div>
+                <div class="feature-card reveal"><h3>Sales teams & consultancies</h3></div>
+                <div class="feature-card reveal"><h3>Service-based businesses</h3></div>
+                <div class="feature-card reveal"><h3>Healthcare practices</h3></div>
+                <div class="feature-card reveal"><h3>Educational institutions</h3></div>
+    </div>
+</section>
+
+<section>
+    <div class="section-header reveal">
+        <div class="section-label">Technology</div>
+        <h2 class="section-title">Built With</h2>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;" class="reveal">
+        <span class="tech-item">Python</span><span class="tech-item">Django</span><span class="tech-item">React</span><span class="tech-item">PostgreSQL</span><span class="tech-item">REST API</span><span class="tech-item">Docker</span><span class="tech-item">AWS</span><span class="tech-item">Tailwind CSS</span>
+    </div>
+</section>
+
+<section style="padding-bottom: 6rem;">
+    <div class="cta-banner reveal">
+        <h2>Ready to build your <span style="color: var(--accent)">crm development</span>?</h2>
+        <p>Let's discuss your requirements and put together a proposal.</p>
+        <a href="contact.html" class="btn-primary">GET A QUOTE</a>
+    </div>
+</section>
+
+
+
+<footer>
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <a href="index.html" class="logo">&lt;<span>Egaal Software</span>/&gt;</a>
+            <p>Software consultancy delivering bespoke, scalable applications. From CRM systems to AI integration — we build software that drives your business forward. Established 2022.</p>
+        </div>
+        <div>
+            <div class="footer-heading">Solutions</div>
+            <div class="footer-links">
+                <a href="crm-development.html">CRM Development</a>
+                <a href="bespoke-apps.html">Bespoke Apps</a>
+                <a href="backend-api.html">Backend API</a>
+                <a href="ai-integration.html">AI Integration</a>
+                <a href="mobile-apps.html">Mobile Apps</a>
+            </div>
+        </div>
+        <div>
+            <div class="footer-heading">Company</div>
+            <div class="footer-links">
+                <a href="team.html">Our Team</a>
+                <a href="join.html">Join Our Team</a>
+                <a href="education.html">Education</a>
+                <a href="housing.html">Housing</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+        <div>
+            <div class="footer-heading">Connect</div>
+            <div class="footer-links">
+                <a href="mailto:egaalsoftwaresolutions@builtbyegaal.com">Email</a>
+                <a href="https://github.com/MEgaal02">GitHub</a>
+                <a href="https://linkedin.com/in/mahmoodegaal">LinkedIn</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-text">© 2026 Egaal Software Solutions. All rights reserved.</div>
+        <div class="footer-association">Trading name of <span>TaxGen AI Ltd</span></div>
+    </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

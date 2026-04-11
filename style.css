@@ -434,22 +434,33 @@ footer {
     .nav-links {
         position: fixed; top: 0; right: -100%; width: 80%; max-width: 360px;
         height: 100vh; background: var(--bg-elevated); flex-direction: column;
-        justify-content: flex-start; padding: 5rem 2rem 2rem; gap: 0;
+        justify-content: flex-start; padding: 5rem 1.5rem 2rem; gap: 0;
         transition: right 0.35s ease; z-index: 999; border-left: 1px solid var(--border);
-        overflow-y: auto;
+        overflow-y: auto; -webkit-overflow-scrolling: touch;
     }
     .nav-links.open { right: 0; }
     .nav-links > li { height: auto; flex-direction: column; align-items: stretch; width: 100%; }
     .nav-links > li > a { padding: 0.75rem 0; height: auto; justify-content: space-between; }
     .mega-dropdown {
         position: static; opacity: 1; visibility: visible;
-        transform: none; background: transparent; border: none;
-        box-shadow: none; padding: 0 0 0 1rem; min-width: 0;
-        display: none; pointer-events: auto;
+        transform: none; background: rgba(20,20,24,0.95); border: none;
+        box-shadow: none; padding: 0; min-width: 0;
+        max-height: 0; overflow: hidden;
+        transition: max-height 0.35s ease, padding 0.35s ease;
+        pointer-events: auto; border-radius: 0;
     }
-    .mega-dropdown.wide { min-width: 0; padding: 0 0 0 1rem; }
-    .mega-dropdown.mobile-open { display: block; }
+    .mega-dropdown.wide { min-width: 0; padding: 0; }
+    .mega-dropdown.mobile-open { 
+        max-height: 600px; padding: 0.5rem 0 0.5rem 1rem;
+        border-left: 2px solid var(--accent);
+        margin: 0.25rem 0 0.5rem 0.5rem;
+    }
     .mega-grid { grid-template-columns: 1fr; }
+    .mega-heading { padding: 0.4rem 0.75rem; font-size: 0.58rem; }
+    .mega-link { padding: 0.5rem 0.75rem; }
+    .mega-link-icon { width: 28px; height: 28px; font-size: 0.75rem; }
+    .mega-link-title { font-size: 0.78rem; }
+    .mega-link-desc { display: none; }
 
     .page-hero { padding: 7rem 1.5rem 3rem; }
     .page-hero h1 { font-size: 2rem; }
@@ -471,3 +482,5 @@ footer {
     .stats-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
     .footer-grid { grid-template-columns: 1fr; }
 }
+
+.nav-arrow.rotated { transform: rotate(180deg); }
