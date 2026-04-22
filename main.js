@@ -127,6 +127,87 @@ window.addEventListener('load', function() {
     document.onkeydown = function(e) { if (e.key === 'Escape') closeModal(); };
 });
 
+// ═══ CURSOR GLOW ═══
+(function() {
+    if (window.innerWidth <= 900) return;
+    var glow = document.createElement('div');
+    glow.className = 'cursor-glow';
+    document.body.appendChild(glow);
+    window.addEventListener('mousemove', function(e) {
+        glow.style.left = e.clientX + 'px';
+        glow.style.top = e.clientY + 'px';
+    });
+    document.addEventListener('mouseleave', function() { glow.style.opacity = '0'; });
+    document.addEventListener('mouseenter', function() { glow.style.opacity = '1'; });
+})();
+
+// ═══ MOTION ANIMATIONS ═══
+(async function initMotion() {
+    try {
+        var M = await import('https://cdn.jsdelivr.net/npm/motion@latest/+esm');
+
+        // 1. STATS COUNTER — count up from 0 when entering viewport
+        document.querySelectorAll('.stat-number').forEach(function(el) {
+            var raw = el.textContent.trim();
+            var num = parseFloat(raw);
+            var suffix = raw.replace(/[\d.]/g, '');
+            if (!num) return;
+            var fired = false;
+            M.inView(el, function() {
+                if (fired) return;
+                fired = true;
+                var startTs = null;
+                var dur = 1600;
+                function tick(ts) {
+                    if (!startTs) startTs = ts;
+                    var p = Math.min((ts - startTs) / dur, 1);
+                    var eased = 1 - Math.pow(1 - p, 3);
+                    el.textContent = Math.round(eased * num) + suffix;
+                    if (p < 1) requestAnimationFrame(tick);
+                }
+                requestAnimationFrame(tick);
+            }, { amount: 0.6 });
+        });
+
+        // 2. HERO SCROLL PARALLAX (home page only, desktop only)
+        var hero = document.querySelector('.home-hero');
+        if (hero && window.innerWidth > 900) {
+            var heroLeft = document.querySelector('.hero-left');
+            var heroRight = document.querySelector('.hero-right');
+            if (heroLeft && heroRight) {
+                M.scroll(
+                    M.animate(heroRight, { y: [0, 70] }, { duration: 1 }),
+                    { target: hero, offset: ['start start', 'end start'] }
+                );
+                M.scroll(
+                    M.animate(heroLeft, { y: [0, 35] }, { duration: 1 }),
+                    { target: hero, offset: ['start start', 'end start'] }
+                );
+            }
+        }
+
+        // 3. WORK GRID STAGGER (home page)
+        var workGrid = document.querySelector('.work-grid');
+        if (workGrid) {
+            var cards = workGrid.querySelectorAll('.work-card');
+            cards.forEach(function(c) {
+                c.classList.remove('reveal');
+                c.style.opacity = '0';
+                c.style.transform = 'translateY(36px)';
+            });
+            M.inView(workGrid, function() {
+                M.animate(cards,
+                    { opacity: [0, 1], y: [36, 0] },
+                    { duration: 0.65, delay: M.stagger(0.14), easing: [0.22, 1, 0.36, 1] }
+                );
+            }, { amount: 0.05 });
+        }
+
+    } catch(e) {
+        // Motion CDN unavailable — existing CSS animations cover everything
+    }
+})();
+
 // ═══ SMOOTH SCROLL ═══
 document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
     anchor.addEventListener('click', function(e) {
