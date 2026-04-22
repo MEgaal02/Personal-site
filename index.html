@@ -8,7 +8,37 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    
+    <style>
+        .home-hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 8rem 3rem 4rem; position: relative; }
+        .home-hero::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%); pointer-events: none; animation: pulse 6s ease-in-out infinite; }
+        .hero-left { padding-right: 4rem; }
+        .hero-tag { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; opacity: 0; animation: slideUp 0.8s ease forwards 0.2s; }
+        .hero-tag::before { content: ''; width: 2rem; height: 1px; background: var(--accent); }
+        .hero-name { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 1.5rem; opacity: 0; animation: slideUp 0.8s ease forwards 0.4s; }
+        .hero-name .highlight { color: var(--accent); }
+        .hero-desc { font-size: 1.1rem; color: var(--text-dim); max-width: 480px; margin-bottom: 1rem; opacity: 0; animation: slideUp 0.8s ease forwards 0.6s; }
+        .hero-established { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.1em; margin-bottom: 2.5rem; opacity: 0; animation: slideUp 0.8s ease forwards 0.7s; }
+        .hero-established span { color: var(--accent); }
+        .hero-cta { display: flex; gap: 1.25rem; opacity: 0; animation: slideUp 0.8s ease forwards 0.8s; }
+        .hero-right { opacity: 0; animation: slideUp 0.8s ease forwards 1s; }
+        .terminal { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: 0 24px 80px rgba(0,0,0,0.5); }
+        .terminal-bar { padding: 0.8rem 1rem; display: flex; align-items: center; gap: 0.5rem; background: var(--bg-card); border-bottom: 1px solid var(--border); }
+        .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .terminal-dot:nth-child(1) { background: #ff5f57; } .terminal-dot:nth-child(2) { background: #febc2e; } .terminal-dot:nth-child(3) { background: #28c840; }
+        .terminal-title { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); margin-left: 0.5rem; }
+        .terminal-body { padding: 1.5rem; font-family: var(--font-mono); font-size: 0.8rem; line-height: 2; }
+        .terminal-line { opacity: 0; animation: typeIn 0.5s ease forwards; }
+        .terminal-line:nth-child(1) { animation-delay: 1.2s; } .terminal-line:nth-child(2) { animation-delay: 1.5s; } .terminal-line:nth-child(3) { animation-delay: 1.8s; } .terminal-line:nth-child(4) { animation-delay: 2.1s; } .terminal-line:nth-child(5) { animation-delay: 2.4s; } .terminal-line:nth-child(6) { animation-delay: 2.7s; } .terminal-line:nth-child(7) { animation-delay: 3.0s; } .terminal-line:nth-child(8) { animation-delay: 3.3s; } .terminal-line:nth-child(9) { animation-delay: 3.6s; }
+        @keyframes typeIn { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: translateX(0); } }
+        .t-prompt { color: var(--accent); } .t-key { color: var(--text-dim); } .t-value { color: var(--success); } .t-string { color: #c4b5fd; } .t-bracket { color: var(--text-muted); }
+        .services-preview { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .service-preview-card { background: var(--bg-card); border: 1px solid var(--border); padding: 2rem; border-radius: 8px; transition: all 0.3s; }
+        .service-preview-card:hover { border-color: var(--accent-dim); transform: translateY(-3px); }
+        .service-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+        .service-preview-card h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; }
+        .service-preview-card p { font-size: 0.88rem; color: var(--text-dim); line-height: 1.6; }
+        @media (max-width: 900px) { .home-hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; gap: 3rem; } .hero-left { padding-right: 0; } .services-preview { grid-template-columns: 1fr; } }
+    </style>
 </head>
 <body>
 
@@ -16,9 +46,8 @@
     <a href="index.html" class="logo">&lt;<span>Egaal Software</span>/&gt;</a>
     <ul class="nav-links" id="navLinks">
         <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="projects.html">Projects</a></li>
         <li>
-            <a href="#" data-dropdown >Solutions <span class="nav-arrow">▼</span></a>
+            <a href="#" data-dropdown>Solutions <span class="nav-arrow">▼</span></a>
             <div class="mega-dropdown wide">
                 <div class="mega-grid">
                     <div>
@@ -41,17 +70,18 @@
             </div>
         </li>
         <li>
-            <a href="#" data-dropdown >Industries <span class="nav-arrow">▼</span></a>
+            <a href="#" data-dropdown>Industries <span class="nav-arrow">▼</span></a>
             <div class="mega-dropdown">
                 <div class="mega-single">
                     <div class="mega-heading">Sectors We Serve</div>
                     <a href="education.html" class="mega-link"><div class="mega-link-icon">◈</div><div class="mega-link-text"><span class="mega-link-title">Education</span><span class="mega-link-desc">E-learning platforms & tools</span></div></a>
                     <a href="housing.html" class="mega-link"><div class="mega-link-icon">▣</div><div class="mega-link-text"><span class="mega-link-title">Housing (HMO)</span><span class="mega-link-desc">Property management CRMs</span></div></a>
+                    <a href="security.html" class="mega-link"><div class="mega-link-icon">◉</div><div class="mega-link-text"><span class="mega-link-title">Security</span><span class="mega-link-desc">Security software platforms</span></div></a>
                 </div>
             </div>
         </li>
         <li>
-            <a href="#" data-dropdown >Company <span class="nav-arrow">▼</span></a>
+            <a href="#" data-dropdown>Company <span class="nav-arrow">▼</span></a>
             <div class="mega-dropdown">
                 <div class="mega-single">
                     <div class="mega-heading">About Egaal</div>
@@ -60,7 +90,8 @@
                 </div>
             </div>
         </li>
-        <li><a href="contact.html" >Contact</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu">
         <span></span><span></span><span></span>
@@ -68,43 +99,11 @@
 </nav>
 <div class="nav-overlay" id="navOverlay"></div>
 
-<style>
-    .home-hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 8rem 3rem 4rem; position: relative; }
-    .home-hero::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%); pointer-events: none; animation: pulse 6s ease-in-out infinite; }
-    .hero-left { padding-right: 4rem; }
-    .hero-tag { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; opacity: 0; animation: slideUp 0.8s ease forwards 0.2s; }
-    .hero-tag::before { content: ''; width: 2rem; height: 1px; background: var(--accent); }
-    .hero-name { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 1.5rem; opacity: 0; animation: slideUp 0.8s ease forwards 0.4s; }
-    .hero-name .highlight { color: var(--accent); }
-    .hero-desc { font-size: 1.1rem; color: var(--text-dim); max-width: 480px; margin-bottom: 1rem; opacity: 0; animation: slideUp 0.8s ease forwards 0.6s; }
-    .hero-established { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.1em; margin-bottom: 2.5rem; opacity: 0; animation: slideUp 0.8s ease forwards 0.7s; }
-    .hero-established span { color: var(--accent); }
-    .hero-cta { display: flex; gap: 1.25rem; opacity: 0; animation: slideUp 0.8s ease forwards 0.8s; }
-    .hero-right { opacity: 0; animation: slideUp 0.8s ease forwards 1s; }
-    .terminal { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: 0 24px 80px rgba(0,0,0,0.5); }
-    .terminal-bar { padding: 0.8rem 1rem; display: flex; align-items: center; gap: 0.5rem; background: var(--bg-card); border-bottom: 1px solid var(--border); }
-    .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
-    .terminal-dot:nth-child(1) { background: #ff5f57; } .terminal-dot:nth-child(2) { background: #febc2e; } .terminal-dot:nth-child(3) { background: #28c840; }
-    .terminal-title { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); margin-left: 0.5rem; }
-    .terminal-body { padding: 1.5rem; font-family: var(--font-mono); font-size: 0.8rem; line-height: 2; }
-    .terminal-line { opacity: 0; animation: typeIn 0.5s ease forwards; }
-    .terminal-line:nth-child(1) { animation-delay: 1.2s; } .terminal-line:nth-child(2) { animation-delay: 1.5s; } .terminal-line:nth-child(3) { animation-delay: 1.8s; } .terminal-line:nth-child(4) { animation-delay: 2.1s; } .terminal-line:nth-child(5) { animation-delay: 2.4s; } .terminal-line:nth-child(6) { animation-delay: 2.7s; } .terminal-line:nth-child(7) { animation-delay: 3.0s; } .terminal-line:nth-child(8) { animation-delay: 3.3s; }
-    @keyframes typeIn { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: translateX(0); } }
-    .t-prompt { color: var(--accent); } .t-key { color: var(--text-dim); } .t-value { color: var(--success); } .t-string { color: #c4b5fd; } .t-bracket { color: var(--text-muted); }
-    .services-preview { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-    .service-preview-card { background: var(--bg-card); border: 1px solid var(--border); padding: 2rem; border-radius: 8px; transition: all 0.3s; }
-    .service-preview-card:hover { border-color: var(--accent-dim); transform: translateY(-3px); }
-    .service-icon { font-size: 1.8rem; margin-bottom: 1rem; }
-    .service-preview-card h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; }
-    .service-preview-card p { font-size: 0.88rem; color: var(--text-dim); line-height: 1.6; }
-    @media (max-width: 900px) { .home-hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; gap: 3rem; } .hero-left { padding-right: 0; } .services-preview { grid-template-columns: 1fr; } }
-</style>
-
 <section class="home-hero">
     <div class="hero-left">
         <div class="hero-tag">Scalable Software Solutions</div>
         <h1 class="hero-name">We build <span class="highlight">bespoke software</span> that drives your business forward.</h1>
-        <p class="hero-desc">Egaal Software Solutions delivers end-to-end software development — from CRM systems and mobile apps to AI integration. We build scalable, secure, and high-performance applications tailored to your business.</p>
+        <p class="hero-desc">Egaal Software Solutions delivers end-to-end software development — from CRM systems and mobile apps to AI integration. Scalable, secure, and high-performance applications tailored to your business.</p>
         <p class="hero-established">Established <span>2022</span> · Birmingham, England</p>
         <div class="hero-cta">
             <a href="crm-development.html" class="btn-primary">OUR SOLUTIONS</a>
@@ -119,7 +118,8 @@
                 <div class="terminal-line"><span class="t-bracket">{</span></div>
                 <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">"company"</span>: <span class="t-string">"Egaal Software Solutions"</span>,</div>
                 <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">"solutions"</span>: <span class="t-string">"CRM, APIs, Mobile, AI"</span>,</div>
-                <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">"industries"</span>: <span class="t-string">"Education, Housing"</span>,</div>
+                <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">"industries"</span>: <span class="t-string">"Education, Housing, Security"</span>,</div>
+                <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">"projects"</span>: <span class="t-value">3</span>,</div>
                 <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">"ceo"</span>: <span class="t-string">"Mahamood Egaal"</span>,</div>
                 <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">"status"</span>: <span class="t-value">"Accepting Clients"</span>,</div>
                 <div class="terminal-line"><span class="t-bracket">}</span></div>
@@ -137,6 +137,24 @@
     </div>
 </section>
 
+<!-- CLIENTS TRUST SLIDER -->
+<div class="clients-section">
+    <div class="clients-header">
+        <div class="clients-label">Trusted by our clients to deliver</div>
+    </div>
+    <div class="clients-ticker">
+        <div class="clients-track">
+            <div class="logo-card"><img src="project_content/nageye%20school%20of%20languages.jpg" alt="Nageye School of Languages"></div>
+            <div class="logo-card"><img src="project_content/red_stone_housing_faithful_logo_1776877071816.jpg" alt="Redstone Housing"></div>
+            <div class="logo-card"><img src="project_content/golden%20crown%20managament%20logo.png" alt="Golden Crown Security"></div>
+            <!-- Duplicate set for seamless infinite loop -->
+            <div class="logo-card"><img src="project_content/nageye%20school%20of%20languages.jpg" alt="Nageye School of Languages"></div>
+            <div class="logo-card"><img src="project_content/red_stone_housing_faithful_logo_1776877071816.jpg" alt="Redstone Housing"></div>
+            <div class="logo-card"><img src="project_content/golden%20crown%20managament%20logo.png" alt="Golden Crown Security"></div>
+        </div>
+    </div>
+</div>
+
 <section id="solutions-preview" style="background: var(--bg-elevated); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
     <div class="section-header reveal">
         <div class="section-label">What We Build</div>
@@ -153,39 +171,93 @@
     </div>
 </section>
 
-<section id="featured-projects">
+<!-- RECENT WORK — 3 Mac mockup project cards -->
+<section id="recent-work">
     <div class="section-header reveal">
         <div class="section-label">Our Work</div>
-        <h2 class="section-title">Featured Projects</h2>
-        <p class="section-subtitle">Real-world applications we've designed, developed, and deployed.</p>
+        <h2 class="section-title">Recent Projects</h2>
+        <p class="section-subtitle">Real-world applications designed, developed, and deployed for our clients.</p>
     </div>
-    <div class="projects-grid">
-        <div class="project-card reveal">
-            <div class="project-preview" data-video="nageye-demo.mp4">
-                <video src="nageye-demo.mp4#t=0.5" muted loop playsinline preload="auto" poster="nageye-thumb.jpg"></video>
-                <div class="play-indicator"></div>
-                <span class="project-status status-live">● Live</span>
-            </div>
-            <div class="project-info">
-                <h3 class="project-title">Nageye School of Languages</h3>
-                <p class="project-desc">A unified e-learning platform replacing 5 disconnected tools — bringing courses, assessments, live video, payments, and progress tracking into one dashboard.</p>
-                <div class="project-tech"><span>Django 6.0</span><span>PostgreSQL</span><span>Docker</span><span>AWS</span><span>Stripe</span><span>Jitsi</span><span>Redis</span></div>
-                <a href="https://nageyeschooloflanguages.com" target="_blank" class="btn-secondary" style="font-size:0.7rem;padding:0.6rem 1.2rem;margin-top:0.75rem;display:inline-block;">VISIT LIVE SITE →</a>
-            </div>
-        </div>
-        <div class="project-card reveal">
-            <div class="project-preview">
-                <div style="width:100%;height:100%;background:var(--bg-elevated);display:flex;align-items:center;justify-content:center;">
-                    <span style="font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);letter-spacing:0.1em;">COMING SOON</span>
+    <div class="work-grid">
+
+        <!-- Nageye School of Languages -->
+        <div class="work-card reveal">
+            <a href="projects.html" class="work-card-link">
+                <div class="mac-wrap">
+                    <div class="mac-body">
+                        <div class="mac-cam"></div>
+                        <div class="mac-display no-overlay">
+                            <video src="nageye-demo.mp4#t=3" muted playsinline preload="metadata" poster="project_content/nageye%20school%20of%20languages.jpg"></video>
+                        </div>
+                    </div>
+                    <div class="mac-hinge"><div class="mac-hinge-slot"></div></div>
+                    <div class="mac-stand"></div>
                 </div>
-                <span class="project-status status-dev">● In Development</span>
-            </div>
-            <div class="project-info">
-                <h3 class="project-title">HMO Property CRM</h3>
-                <p class="project-desc">A bespoke CRM system for HMO property management companies — tenant tracking, maintenance scheduling, compliance, and financial reporting.</p>
-                <div class="project-tech"><span>Django</span><span>React</span><span>PostgreSQL</span><span>REST API</span><span>Docker</span></div>
-            </div>
+                <div class="work-info">
+                    <div class="work-meta">
+                        Education &nbsp;·&nbsp;
+                        <span class="project-status status-live" style="position:static;font-size:0.62rem;">● Live</span>
+                    </div>
+                    <h3>Nageye School of Languages</h3>
+                    <p>Unified e-learning platform replacing 5 disconnected tools — courses, live video, payments, and student analytics.</p>
+                    <span class="work-arrow">VIEW PROJECT →</span>
+                </div>
+            </a>
         </div>
+
+        <!-- Redstone Housing CRM -->
+        <div class="work-card reveal">
+            <a href="housing.html" class="work-card-link">
+                <div class="mac-wrap">
+                    <div class="mac-body">
+                        <div class="mac-cam"></div>
+                        <div class="mac-display no-overlay">
+                            <video src="project_content/redstone%20housing%20crm%20video.mp4#t=2" muted playsinline preload="metadata"></video>
+                        </div>
+                    </div>
+                    <div class="mac-hinge"><div class="mac-hinge-slot"></div></div>
+                    <div class="mac-stand"></div>
+                </div>
+                <div class="work-info">
+                    <div class="work-meta">
+                        Housing &nbsp;·&nbsp;
+                        <span class="project-status status-dev" style="position:static;font-size:0.62rem;">● In Development</span>
+                    </div>
+                    <h3>Redstone Housing CRM</h3>
+                    <p>Purpose-built CRM for HMO property management — tenant tracking, compliance monitoring, and financial reporting.</p>
+                    <span class="work-arrow">VIEW PROJECT →</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- Golden Crown Security -->
+        <div class="work-card reveal">
+            <a href="security.html" class="work-card-link">
+                <div class="mac-wrap">
+                    <div class="mac-body">
+                        <div class="mac-cam"></div>
+                        <div class="mac-display no-overlay">
+                            <video src="project_content/golden%20crown%20security.mp4#t=2" muted playsinline preload="metadata"></video>
+                        </div>
+                    </div>
+                    <div class="mac-hinge"><div class="mac-hinge-slot"></div></div>
+                    <div class="mac-stand"></div>
+                </div>
+                <div class="work-info">
+                    <div class="work-meta">
+                        Security &nbsp;·&nbsp;
+                        <span class="project-status status-live" style="position:static;font-size:0.62rem;">● Live</span>
+                    </div>
+                    <h3>Golden Crown Security</h3>
+                    <p>Security operations platform for guard scheduling, real-time incident reporting, and client dashboards.</p>
+                    <span class="work-arrow">VIEW PROJECT →</span>
+                </div>
+            </a>
+        </div>
+
+    </div>
+    <div style="text-align:center;margin-top:3rem;" class="reveal">
+        <a href="projects.html" class="btn-secondary">VIEW ALL PROJECTS</a>
     </div>
 </section>
 
@@ -227,6 +299,7 @@
                 <a href="join.html">Join Our Team</a>
                 <a href="education.html">Education</a>
                 <a href="housing.html">Housing</a>
+                <a href="security.html">Security</a>
                 <a href="contact.html">Contact</a>
             </div>
         </div>

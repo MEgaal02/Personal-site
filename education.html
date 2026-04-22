@@ -8,17 +8,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    
 </head>
 <body>
 
 <nav id="navbar">
     <a href="index.html" class="logo">&lt;<span>Egaal Software</span>/&gt;</a>
     <ul class="nav-links" id="navLinks">
-        <li><a href="index.html" >Home</a></li>
-        <li><a href="projects.html">Projects</a></li>
+        <li><a href="index.html">Home</a></li>
         <li>
-            <a href="#" data-dropdown >Solutions <span class="nav-arrow">▼</span></a>
+            <a href="#" data-dropdown>Solutions <span class="nav-arrow">▼</span></a>
             <div class="mega-dropdown wide">
                 <div class="mega-grid">
                     <div>
@@ -47,11 +45,12 @@
                     <div class="mega-heading">Sectors We Serve</div>
                     <a href="education.html" class="mega-link"><div class="mega-link-icon">◈</div><div class="mega-link-text"><span class="mega-link-title">Education</span><span class="mega-link-desc">E-learning platforms & tools</span></div></a>
                     <a href="housing.html" class="mega-link"><div class="mega-link-icon">▣</div><div class="mega-link-text"><span class="mega-link-title">Housing (HMO)</span><span class="mega-link-desc">Property management CRMs</span></div></a>
+                    <a href="security.html" class="mega-link"><div class="mega-link-icon">◉</div><div class="mega-link-text"><span class="mega-link-title">Security</span><span class="mega-link-desc">Security software platforms</span></div></a>
                 </div>
             </div>
         </li>
         <li>
-            <a href="#" data-dropdown >Company <span class="nav-arrow">▼</span></a>
+            <a href="#" data-dropdown>Company <span class="nav-arrow">▼</span></a>
             <div class="mega-dropdown">
                 <div class="mega-single">
                     <div class="mega-heading">About Egaal</div>
@@ -60,7 +59,8 @@
                 </div>
             </div>
         </li>
-        <li><a href="contact.html" >Contact</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu">
         <span></span><span></span><span></span>
@@ -74,29 +74,43 @@
     <p>We build e-learning platforms, student management systems, and educational tools that transform how institutions deliver learning.</p>
 </section>
 
+<!-- Nageye Case Study with Mac Mockup -->
 <section>
-    <div class="project-detail reveal">
-        <div class="project-detail-video" data-video="nageye-demo.mp4">
-            <video src="nageye-demo.mp4#t=0.5" muted loop playsinline preload="auto" poster="nageye-thumb.jpg"></video>
-            <div class="play-indicator"></div>
+    <div class="project-scene reveal">
+        <div class="project-scene-cinema">
+            <div class="mac-wrap">
+                <div class="mac-body">
+                    <div class="mac-cam"></div>
+                    <div class="mac-display" data-video="nageye-demo.mp4">
+                        <video src="nageye-demo.mp4#t=3" muted loop playsinline preload="metadata" poster="project_content/nageye%20school%20of%20languages.jpg"></video>
+                        <div class="mac-display-overlay"><div class="mac-play-btn"></div></div>
+                    </div>
+                </div>
+                <div class="mac-hinge"><div class="mac-hinge-slot"></div></div>
+                <div class="mac-stand"></div>
+            </div>
         </div>
-        <div class="project-detail-body">
-            <div class="project-detail-header">
-                <h2>Nageye School of Languages</h2>
-                <span class="project-status status-live" style="position: static;">● Live</span>
+        <div class="project-scene-header">
+            <h2 class="project-scene-title">Nageye School of Languages</h2>
+            <div class="project-scene-badges">
+                <span class="project-status status-live" style="position:static;">● Live</span>
+                <a href="https://nageyeschooloflanguages.com" target="_blank" class="btn-primary" style="padding:0.6rem 1.2rem;font-size:0.68rem;">VISIT LIVE SITE →</a>
             </div>
-            <p class="project-desc">The client managed their English teaching business across multiple disconnected platforms — Zoom for live sessions, WhatsApp for student communication, Excel spreadsheets for financial tracking, email for file transfers, and a third-party platform for assessments. There was no student progress tracking, no unified dashboard, and critical data was scattered across five different tools.
-
-We built a single, unified e-learning platform that consolidates everything into one dashboard. Structured courses with interactive quizzes and assessments, personalised teacher feedback via voice notes, live video sessions powered by a self-hosted Jitsi server, subscription billing through Stripe, and comprehensive progress tracking and analytics for both students and instructors.</p>
-            <div class="project-tech" style="margin-bottom: 2rem;">
-                <span>Django 6.0</span><span>PostgreSQL</span><span>Docker</span><span>AWS</span><span>Stripe</span><span>Jitsi</span><span>Redis</span>
-            </div>
-            <a href="https://nageyeschooloflanguages.com" target="_blank" class="btn-primary" style="margin-bottom:2rem;display:inline-block;">VISIT LIVE SITE →</a>
-
-            <div class="project-detail-meta">
+        </div>
+        <div class="project-scene-body">
+            <p style="font-size:1rem;color:var(--text-dim);line-height:1.8;margin-bottom:2rem;max-width:780px;">The client managed their English teaching business across five disconnected platforms — Zoom, WhatsApp, Excel, email, and a third-party assessment tool. We built a single unified e-learning platform that consolidates everything: structured courses, interactive quizzes, self-hosted Jitsi video sessions, voice note feedback, Stripe billing, and comprehensive progress analytics for both students and instructors.</p>
+            <div class="project-detail-meta" style="grid-template-columns:repeat(3,1fr);display:grid;gap:2rem;padding-top:1.5rem;border-top:1px solid var(--border);margin-bottom:2rem;">
                 <div class="meta-group"><h4>Role</h4><p>Full-Stack Development, UI/UX Design, Database Architecture, Payment Integration, DevOps</p></div>
-                <div class="meta-group"><h4>Key Features</h4><p>Course delivery, quizzes, live video (Jitsi), voice note feedback, Stripe billing, progress analytics, S3 storage</p></div>
+                <div class="meta-group"><h4>Key Features</h4><p>Course delivery, quizzes, live Jitsi video, voice note feedback, Stripe billing, progress analytics, S3 storage</p></div>
                 <div class="meta-group"><h4>Stack</h4><p>Django 6.0, PostgreSQL, Docker, AWS (EC2, S3, RDS), Redis, Nginx, Gunicorn, Stripe, Jitsi</p></div>
+            </div>
+            <div class="case-stack">
+                <span>Django 6.0</span><span>PostgreSQL</span><span>Docker</span><span>AWS</span>
+                <span>Stripe</span><span>Jitsi</span><span>Redis</span><span>CloudFront CDN</span>
+            </div>
+            <div class="case-actions" style="margin-top:1.5rem;">
+                <a href="https://nageyeschooloflanguages.com" target="_blank" class="btn-primary">VISIT LIVE SITE →</a>
+                <a href="projects.html" class="btn-secondary">FULL CASE STUDY</a>
             </div>
         </div>
     </div>
@@ -152,6 +166,7 @@ We built a single, unified e-learning platform that consolidates everything into
                 <a href="join.html">Join Our Team</a>
                 <a href="education.html">Education</a>
                 <a href="housing.html">Housing</a>
+                <a href="security.html">Security</a>
                 <a href="contact.html">Contact</a>
             </div>
         </div>

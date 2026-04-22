@@ -14,7 +14,6 @@ function toggleMenu() {
     navLinks.classList.toggle('open');
     navOverlay.classList.toggle('active');
     document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
-    // Close all mobile dropdowns
     document.querySelectorAll('.mega-dropdown.mobile-open').forEach(function(d) {
         d.classList.remove('mobile-open');
     });
@@ -34,18 +33,15 @@ document.querySelectorAll('.nav-links > li > a[data-dropdown]').forEach(function
             var arrow = this.querySelector('.nav-arrow');
             if (dropdown) {
                 var isOpen = dropdown.classList.contains('mobile-open');
-                // Close all dropdowns and reset arrows
                 document.querySelectorAll('.mega-dropdown.mobile-open').forEach(function(d) {
                     d.classList.remove('mobile-open');
                 });
                 document.querySelectorAll('.nav-arrow.rotated').forEach(function(a) {
                     a.classList.remove('rotated');
                 });
-                // Toggle this one
                 if (!isOpen) {
                     dropdown.classList.add('mobile-open');
                     if (arrow) arrow.classList.add('rotated');
-                    // Scroll dropdown into view
                     setTimeout(function() {
                         dropdown.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                     }, 100);
@@ -86,33 +82,27 @@ window.addEventListener('load', function() {
 
     if (!modal || !modalVid) return;
 
-    // Home page cards
-    var cards = document.querySelectorAll('.project-preview');
-    for (var i = 0; i < cards.length; i++) {
-        (function(card) {
-            var vid = card.querySelector('video');
-            var src = card.getAttribute('data-video');
-            if (!vid || !src) return;
+    function bindVideoCard(card) {
+        var vid = card.querySelector('video');
+        var src = card.getAttribute('data-video');
+        if (!src) return;
+        if (vid) {
             vid.muted = true;
             card.onmouseenter = function() { vid.currentTime = 0; vid.play().catch(function(){}); };
             card.onmouseleave = function() { vid.pause(); vid.currentTime = 0.5; };
-            card.onclick = function(e) { e.preventDefault(); e.stopPropagation(); openModal(src); };
-        })(cards[i]);
+        }
+        card.onclick = function(e) { e.preventDefault(); e.stopPropagation(); openModal(src); };
     }
 
-    // Project detail cards
-    var detailCards = document.querySelectorAll('.project-detail-video');
-    for (var j = 0; j < detailCards.length; j++) {
-        (function(card) {
-            var vid = card.querySelector('video');
-            var src = card.getAttribute('data-video');
-            if (!vid || !src) return;
-            vid.muted = true;
-            card.onmouseenter = function() { vid.currentTime = 0; vid.play().catch(function(){}); };
-            card.onmouseleave = function() { vid.pause(); vid.currentTime = 0.5; };
-            card.onclick = function(e) { e.preventDefault(); e.stopPropagation(); openModal(src); };
-        })(detailCards[j]);
-    }
+    // Legacy selectors (education page project-detail-video)
+    document.querySelectorAll('.project-preview[data-video]').forEach(bindVideoCard);
+    document.querySelectorAll('.project-detail-video[data-video]').forEach(bindVideoCard);
+
+    // New Mac display screens (projects page and industry pages)
+    document.querySelectorAll('.mac-display[data-video]').forEach(bindVideoCard);
+
+    // Bug fix: case-video on projects page
+    document.querySelectorAll('.case-video[data-video]').forEach(bindVideoCard);
 
     function openModal(src) {
         modalVid.src = src;

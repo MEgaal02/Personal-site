@@ -8,43 +8,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <style>
-        .case-study { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 3rem; }
-        .case-study-header { padding: 2.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-        .case-study-header h2 { font-family: var(--font-display); font-size: 1.8rem; font-weight: 800; }
-        .case-study-badges { display: flex; gap: 0.75rem; align-items: center; }
-        .case-study-body { padding: 2.5rem; }
-        .case-study-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; margin-bottom: 2.5rem; }
-        .case-block { padding: 1.5rem; background: var(--bg-elevated); border-radius: 8px; border-left: 3px solid var(--accent); }
-        .case-block h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--accent); }
-        .case-block p { font-size: 0.88rem; color: var(--text-dim); line-height: 1.7; }
-        .case-block ul { list-style: none; padding: 0; }
-        .case-block ul li { font-size: 0.85rem; color: var(--text-dim); line-height: 1.8; padding-left: 1.2rem; position: relative; }
-        .case-block ul li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 0.75rem; }
-        .case-tech { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
-        .case-tech span { font-family: var(--font-mono); font-size: 0.68rem; padding: 0.3rem 0.7rem; background: var(--accent-dim); color: var(--accent); border-radius: 3px; }
-        .case-links { display: flex; gap: 1rem; margin-top: 1.5rem; }
-        .case-links a { font-family: var(--font-mono); font-size: 0.75rem; }
-        .case-video { width: 100%; height: 400px; position: relative; overflow: hidden; cursor: pointer; background: #0a0a0c; }
-        .case-video video { width: 100%; height: 100%; object-fit: cover; }
-        .case-video .play-indicator { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 72px; height: 72px; background: rgba(0,0,0,0.6); border: 2px solid var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s; pointer-events: none; }
-        .case-video .play-indicator::after { content: ''; display: block; width: 0; height: 0; border-style: solid; border-width: 10px 0 10px 18px; border-color: transparent transparent transparent var(--accent); margin-left: 4px; }
-        .case-video:hover .play-indicator { opacity: 0; }
-        @media (max-width: 900px) {
-            .case-study-grid { grid-template-columns: 1fr; }
-            .case-video { height: 250px; }
-            .case-study-header { flex-direction: column; align-items: flex-start; }
-        }
-    </style>
 </head>
 <body>
 
 <nav id="navbar">
     <a href="index.html" class="logo">&lt;<span>Egaal Software</span>/&gt;</a>
     <ul class="nav-links" id="navLinks">
-        <li><a href="index.html" >Home</a></li>
+        <li><a href="index.html">Home</a></li>
         <li>
-            <a href="#" data-dropdown >Solutions <span class="nav-arrow">▼</span></a>
+            <a href="#" data-dropdown>Solutions <span class="nav-arrow">▼</span></a>
             <div class="mega-dropdown wide">
                 <div class="mega-grid">
                     <div>
@@ -67,17 +39,18 @@
             </div>
         </li>
         <li>
-            <a href="#" data-dropdown >Industries <span class="nav-arrow">▼</span></a>
+            <a href="#" data-dropdown>Industries <span class="nav-arrow">▼</span></a>
             <div class="mega-dropdown">
                 <div class="mega-single">
                     <div class="mega-heading">Sectors We Serve</div>
                     <a href="education.html" class="mega-link"><div class="mega-link-icon">◈</div><div class="mega-link-text"><span class="mega-link-title">Education</span><span class="mega-link-desc">E-learning platforms & tools</span></div></a>
                     <a href="housing.html" class="mega-link"><div class="mega-link-icon">▣</div><div class="mega-link-text"><span class="mega-link-title">Housing (HMO)</span><span class="mega-link-desc">Property management CRMs</span></div></a>
+                    <a href="security.html" class="mega-link"><div class="mega-link-icon">◉</div><div class="mega-link-text"><span class="mega-link-title">Security</span><span class="mega-link-desc">Security software platforms</span></div></a>
                 </div>
             </div>
         </li>
         <li>
-            <a href="#" data-dropdown >Company <span class="nav-arrow">▼</span></a>
+            <a href="#" data-dropdown>Company <span class="nav-arrow">▼</span></a>
             <div class="mega-dropdown">
                 <div class="mega-single">
                     <div class="mega-heading">About Egaal</div>
@@ -87,7 +60,7 @@
             </div>
         </li>
         <li><a href="projects.html" class="active">Projects</a></li>
-        <li><a href="contact.html" >Contact</a></li>
+        <li><a href="contact.html">Contact</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu">
         <span></span><span></span><span></span>
@@ -98,35 +71,44 @@
 <section class="page-hero">
     <div class="page-hero-tag">Our Work</div>
     <h1>Projects that <span class="highlight">deliver</span>.</h1>
-    <p>Real-world applications we've designed, developed, and deployed. Each project represents our commitment to solving real business problems with clean, scalable software.</p>
+    <p>Real-world applications designed, developed, and deployed. Each project represents our commitment to solving real business problems with clean, scalable software.</p>
 </section>
 
-<!-- NAGEYE CASE STUDY -->
+<!-- ═══ NAGEYE SCHOOL OF LANGUAGES ═══ -->
 <section>
-    <div class="case-study reveal">
-        <div class="case-video" data-video="nageye-demo.mp4">
-            <video src="nageye-demo.mp4#t=0.5" muted loop playsinline preload="auto" poster="nageye-thumb.jpg"></video>
-            <div class="play-indicator"></div>
+    <div class="project-scene reveal">
+        <div class="project-scene-cinema">
+            <div class="mac-wrap">
+                <div class="mac-body">
+                    <div class="mac-cam"></div>
+                    <div class="mac-display" data-video="nageye-demo.mp4">
+                        <video src="nageye-demo.mp4#t=3" muted loop playsinline preload="metadata" poster="project_content/nageye%20school%20of%20languages.jpg"></video>
+                        <div class="mac-display-overlay"><div class="mac-play-btn"></div></div>
+                    </div>
+                </div>
+                <div class="mac-hinge"><div class="mac-hinge-slot"></div></div>
+                <div class="mac-stand"></div>
+            </div>
         </div>
-        <div class="case-study-header">
-            <h2>Nageye School of Languages</h2>
-            <div class="case-study-badges">
+        <div class="project-scene-header">
+            <h2 class="project-scene-title">Nageye School of Languages</h2>
+            <div class="project-scene-badges">
                 <span class="project-status status-live" style="position:static;">● Live</span>
                 <a href="https://nageyeschooloflanguages.com" target="_blank" class="btn-primary" style="padding:0.6rem 1.2rem;font-size:0.68rem;">VISIT LIVE SITE →</a>
             </div>
         </div>
-        <div class="case-study-body">
-            <div class="case-study-grid">
+        <div class="project-scene-body">
+            <div class="case-grid">
                 <div class="case-block">
                     <h3>The Problem</h3>
-                    <p>The client was running an English teaching company using multiple disconnected tools across their daily operations:</p>
+                    <p>The client ran an English teaching company across five disconnected tools with no unified dashboard or student progress tracking:</p>
                     <ul>
                         <li>Zoom for live lessons</li>
                         <li>WhatsApp for student communication</li>
-                        <li>Excel spreadsheets for finance tracking</li>
-                        <li>Email for file transfers and materials</li>
-                        <li>A third-party platform for assessments</li>
-                        <li>No student progress tracking at all</li>
+                        <li>Excel for finance tracking</li>
+                        <li>Email for file transfers</li>
+                        <li>Third-party platform for assessments</li>
+                        <li>No progress tracking whatsoever</li>
                     </ul>
                 </div>
                 <div class="case-block">
@@ -137,8 +119,8 @@
                         <li>Built-in assessment and quiz engine</li>
                         <li>Self-hosted video calling (replacing Zoom)</li>
                         <li>Teacher feedback system with voice notes</li>
-                        <li>Stripe subscription billing (replacing manual invoicing)</li>
-                        <li>Full student progress tracking and analytics</li>
+                        <li>Stripe subscription billing</li>
+                        <li>Full student progress tracking & analytics</li>
                     </ul>
                 </div>
                 <div class="case-block">
@@ -146,7 +128,7 @@
                     <p>Delivered a production-grade, fully containerised platform deployed on AWS infrastructure:</p>
                     <ul>
                         <li>Unified dashboard for teachers and students</li>
-                        <li>All communication, lessons, and payments in one place</li>
+                        <li>All communication, lessons, payments in one place</li>
                         <li>Self-hosted Jitsi video server for live sessions</li>
                         <li>Automated billing via Stripe subscriptions</li>
                         <li>S3 media storage with CloudFront CDN</li>
@@ -154,49 +136,158 @@
                     </ul>
                 </div>
             </div>
-
-            <div class="case-tech">
-                <span>Django 6.0</span>
-                <span>PostgreSQL (AWS RDS)</span>
-                <span>Gunicorn</span>
-                <span>Nginx</span>
-                <span>Docker</span>
-                <span>AWS EC2</span>
-                <span>AWS S3</span>
-                <span>CloudFront CDN</span>
-                <span>Redis</span>
-                <span>Jitsi Meet (Self-Hosted)</span>
-                <span>Stripe API</span>
-                <span>Let's Encrypt SSL</span>
-                <span>JavaScript</span>
-                <span>HTML/CSS</span>
+            <div class="case-stack">
+                <span>Django 6.0</span><span>PostgreSQL (AWS RDS)</span><span>Gunicorn</span><span>Nginx</span>
+                <span>Docker</span><span>AWS EC2</span><span>AWS S3</span><span>CloudFront CDN</span>
+                <span>Redis</span><span>Jitsi Meet (Self-Hosted)</span><span>Stripe API</span><span>Let's Encrypt SSL</span>
             </div>
-
-            <div class="case-links">
-                <a href="https://nageyeschooloflanguages.com" target="_blank" class="btn-primary" style="padding:0.75rem 1.5rem;">VISIT LIVE SITE →</a>
-                <a href="education.html" class="btn-secondary" style="padding:0.75rem 1.5rem;">VIEW EDUCATION SOLUTIONS</a>
+            <div class="case-actions">
+                <a href="https://nageyeschooloflanguages.com" target="_blank" class="btn-primary">VISIT LIVE SITE →</a>
+                <a href="education.html" class="btn-secondary">VIEW EDUCATION SOLUTIONS</a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- HMO CRM -->
+<!-- ═══ REDSTONE HOUSING CRM ═══ -->
 <section style="padding-top: 0;">
-    <div class="case-study reveal">
-        <div style="width:100%;height:300px;background:var(--bg-elevated);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border);">
-            <span style="font-family:var(--font-mono);font-size:1rem;color:var(--text-muted);letter-spacing:0.15em;">IN DEVELOPMENT</span>
-        </div>
-        <div class="case-study-header">
-            <h2>HMO Property CRM</h2>
-            <span class="project-status status-dev" style="position:static;">● In Development</span>
-        </div>
-        <div class="case-study-body">
-            <p style="font-size:1rem;color:var(--text-dim);line-height:1.8;margin-bottom:2rem;max-width:700px;">A bespoke CRM system purpose-built for Houses in Multiple Occupation (HMO) property management companies. Tenant management, room-level tracking, compliance monitoring, maintenance scheduling, and financial reporting — all in one platform designed specifically for the HMO landscape.</p>
-            <div class="case-tech">
-                <span>Django</span><span>React</span><span>PostgreSQL</span><span>REST API</span><span>Docker</span><span>AWS</span>
+    <div class="project-scene reveal">
+        <div class="project-scene-cinema">
+            <div class="mac-wrap">
+                <div class="mac-body">
+                    <div class="mac-cam"></div>
+                    <div class="mac-display" data-video="project_content/redstone%20housing%20crm%20video.mp4">
+                        <video src="project_content/redstone%20housing%20crm%20video.mp4#t=2" muted loop playsinline preload="metadata"></video>
+                        <div class="mac-display-overlay"><div class="mac-play-btn"></div></div>
+                    </div>
+                </div>
+                <div class="mac-hinge"><div class="mac-hinge-slot"></div></div>
+                <div class="mac-stand"></div>
             </div>
-            <div class="case-links">
-                <a href="housing.html" class="btn-secondary" style="padding:0.75rem 1.5rem;">VIEW HOUSING SOLUTIONS</a>
+        </div>
+        <div class="project-scene-header">
+            <h2 class="project-scene-title">Redstone Housing CRM</h2>
+            <div class="project-scene-badges">
+                <span class="project-status status-dev" style="position:static;">● In Development</span>
+            </div>
+        </div>
+        <div class="project-scene-body">
+            <div class="case-grid">
+                <div class="case-block">
+                    <h3>The Problem</h3>
+                    <p>Redstone Housing managed a growing HMO portfolio with no centralised system — critical data scattered across spreadsheets, paper contracts, and email threads:</p>
+                    <ul>
+                        <li>Tenant records on Excel with no audit trail</li>
+                        <li>HMO compliance deadlines managed manually</li>
+                        <li>Maintenance requests via phone with no tracking</li>
+                        <li>Financial reporting done manually each month</li>
+                        <li>No room-level occupancy visibility</li>
+                    </ul>
+                </div>
+                <div class="case-block">
+                    <h3>Our Plan</h3>
+                    <p>Build a purpose-built HMO CRM system that centralises every aspect of property management into a single intelligent platform:</p>
+                    <ul>
+                        <li>Tenant management with full contract lifecycle</li>
+                        <li>Compliance dashboard with certificate expiry alerts</li>
+                        <li>Maintenance ticketing system with contractor assignment</li>
+                        <li>Room-level occupancy and billing tracking</li>
+                        <li>Automated financial reporting per property</li>
+                        <li>Document storage with centralised access</li>
+                    </ul>
+                </div>
+                <div class="case-block">
+                    <h3>In Progress</h3>
+                    <p>Currently in active development with Redstone Housing as our first HMO adopter:</p>
+                    <ul>
+                        <li>Core tenant management module complete</li>
+                        <li>Compliance dashboard built and in testing</li>
+                        <li>Maintenance module in final development</li>
+                        <li>Financial reporting module in design</li>
+                        <li>Targeting production deployment Q3 2026</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="case-stack">
+                <span>Django</span><span>React</span><span>PostgreSQL</span><span>REST API</span>
+                <span>Docker</span><span>AWS</span><span>Celery</span><span>Redis</span>
+            </div>
+            <div class="case-actions">
+                <a href="housing.html" class="btn-secondary">VIEW HOUSING SOLUTIONS</a>
+                <a href="contact.html" class="btn-secondary">ENQUIRE ABOUT EARLY ACCESS</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ GOLDEN CROWN SECURITY ═══ -->
+<section style="padding-top: 0;">
+    <div class="project-scene reveal">
+        <div class="project-scene-cinema">
+            <div class="mac-wrap">
+                <div class="mac-body">
+                    <div class="mac-cam"></div>
+                    <div class="mac-display" data-video="project_content/golden%20crown%20security.mp4">
+                        <video src="project_content/golden%20crown%20security.mp4#t=2" muted loop playsinline preload="metadata"></video>
+                        <div class="mac-display-overlay"><div class="mac-play-btn"></div></div>
+                    </div>
+                </div>
+                <div class="mac-hinge"><div class="mac-hinge-slot"></div></div>
+                <div class="mac-stand"></div>
+            </div>
+        </div>
+        <div class="project-scene-header">
+            <h2 class="project-scene-title">Golden Crown Security</h2>
+            <div class="project-scene-badges">
+                <span class="project-status status-live" style="position:static;">● Live</span>
+            </div>
+        </div>
+        <div class="project-scene-body">
+            <div class="case-grid">
+                <div class="case-block">
+                    <h3>The Problem</h3>
+                    <p>Golden Crown Security was managing daily operations entirely on WhatsApp, phone calls, and paper logs — no real-time oversight:</p>
+                    <ul>
+                        <li>Guard schedules on paper and WhatsApp groups</li>
+                        <li>Incident reports hand-written with no audit trail</li>
+                        <li>No real-time visibility into patrol coverage</li>
+                        <li>Client billing calculated manually each month</li>
+                        <li>Timesheets prone to errors and disputes</li>
+                        <li>No centralized document or certification storage</li>
+                    </ul>
+                </div>
+                <div class="case-block">
+                    <h3>Our Plan</h3>
+                    <p>Design and build a unified security operations management platform with supervisor and guard-facing interfaces:</p>
+                    <ul>
+                        <li>Guard scheduling with shift management</li>
+                        <li>Real-time incident logging with location tagging</li>
+                        <li>Client-facing reporting dashboard</li>
+                        <li>Automated timesheet generation for payroll</li>
+                        <li>Document and certification management</li>
+                        <li>Mobile-responsive for on-site guard access</li>
+                    </ul>
+                </div>
+                <div class="case-block">
+                    <h3>The Resolution</h3>
+                    <p>Delivered a full security operations platform deployed on AWS — accessible by supervisors, guards, and clients:</p>
+                    <ul>
+                        <li>Supervisors manage guards, shifts and incidents live</li>
+                        <li>Guards log incidents directly from mobile devices</li>
+                        <li>Clients receive automated weekly performance reports</li>
+                        <li>Billing tied directly to validated timesheet data</li>
+                        <li>All SIA licences and certifications tracked centrally</li>
+                        <li>Zero paperwork — fully digital operations</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="case-stack">
+                <span>Django</span><span>React</span><span>PostgreSQL</span><span>REST API</span>
+                <span>Docker</span><span>AWS EC2</span><span>AWS S3</span><span>Celery</span><span>Redis</span>
+            </div>
+            <div class="case-actions">
+                <a href="security.html" class="btn-secondary">VIEW SECURITY SOLUTIONS</a>
+                <a href="contact.html" class="btn-secondary">START A PROJECT</a>
             </div>
         </div>
     </div>
@@ -240,6 +331,7 @@
                 <a href="join.html">Join Our Team</a>
                 <a href="education.html">Education</a>
                 <a href="housing.html">Housing</a>
+                <a href="security.html">Security</a>
                 <a href="projects.html">Projects</a>
                 <a href="contact.html">Contact</a>
             </div>
