@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Academy — Egaal Software Solutions</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #ai-canvas { position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.55; }
+
+        /* Hero */
+        .ai-hero {
+            position:relative;min-height:100vh;display:flex;flex-direction:column;
+            align-items:center;justify-content:center;text-align:center;
+            padding:9rem 2rem 7rem;z-index:1;overflow:hidden;
+        }
+        .ai-orb {
+            position:absolute;border-radius:50%;pointer-events:none;filter:blur(90px);
+        }
+        .ai-orb-1 { width:600px;height:600px;background:radial-gradient(circle,rgba(232,197,71,.07),transparent 70%);top:-150px;right:-150px; }
+        .ai-orb-2 { width:480px;height:480px;background:radial-gradient(circle,rgba(167,139,250,.06),transparent 70%);bottom:-80px;left:-120px; }
+        .ai-orb-3 { width:280px;height:280px;background:radial-gradient(circle,rgba(34,211,238,.04),transparent 70%);top:38%;right:8%; }
+
+        .ai-badge {
+            display:inline-flex;align-items:center;gap:.6rem;
+            font-family:var(--font-mono);font-size:.67rem;letter-spacing:.2em;text-transform:uppercase;
+            color:var(--accent);background:rgba(232,197,71,.07);border:1px solid rgba(232,197,71,.22);
+            padding:.45rem 1.1rem;border-radius:50px;margin-bottom:2.5rem;
+        }
+        .ai-badge-dot {
+            width:6px;height:6px;border-radius:50%;background:var(--accent);
+            box-shadow:0 0 6px var(--accent);
+            animation:badgeBlink 1.8s ease-in-out infinite;
+        }
+        @keyframes badgeBlink { 0%,100%{opacity:1}50%{opacity:.15} }
+
+        .ai-hero-title {
+            font-family:var(--font-display);font-size:clamp(3rem,9vw,7.5rem);
+            font-weight:800;line-height:.92;letter-spacing:-.04em;margin-bottom:1.75rem;
+        }
+        .ai-hero-title .t1 { display:block;color:var(--text); }
+        .ai-hero-title .t2 { display:block;color:var(--accent);text-shadow:0 0 80px rgba(232,197,71,.3); }
+        .ai-hero-title .t3 { display:block;font-size:.42em;font-weight:600;color:var(--text-muted);letter-spacing:-.01em;margin-top:.45em; }
+
+        .ai-hero-sub { font-size:clamp(1rem,2vw,1.18rem);color:var(--text-dim);max-width:580px;line-height:1.8;margin-bottom:3rem; }
+
+        .ai-form-wrap {
+            display:flex;max-width:460px;width:100%;
+            box-shadow:0 8px 40px rgba(0,0,0,.4),0 0 0 1px rgba(255,255,255,.04);
+            border-radius:8px;overflow:hidden;
+        }
+        .ai-form-wrap input {
+            flex:1;font-family:var(--font-body);font-size:.9rem;padding:1rem 1.25rem;
+            background:var(--bg-elevated);border:1px solid rgba(255,255,255,.07);border-right:none;
+            border-radius:8px 0 0 8px;color:var(--text);outline:none;transition:border-color .3s;
+        }
+        .ai-form-wrap input::placeholder { color:var(--text-muted); }
+        .ai-form-wrap input:focus { border-color:rgba(232,197,71,.35); }
+        .ai-form-wrap button {
+            font-family:var(--font-mono);font-size:.7rem;letter-spacing:.1em;font-weight:500;
+            padding:1rem 1.4rem;background:var(--accent);color:var(--bg);border:none;
+            border-radius:0 8px 8px 0;cursor:pointer;white-space:nowrap;transition:background .3s;
+        }
+        .ai-form-wrap button:hover { background:var(--accent-hover); }
+        .ai-hero-note { font-family:var(--font-mono);font-size:.63rem;color:var(--text-muted);margin-top:1rem; }
+
+        .ai-scroll-cue {
+            position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
+            display:flex;flex-direction:column;align-items:center;gap:.5rem;
+        }
+        .ai-scroll-label { font-family:var(--font-mono);font-size:.56rem;letter-spacing:.22em;color:var(--text-muted);text-transform:uppercase;writing-mode:vertical-rl; }
+        .ai-scroll-line { width:1px;height:46px;background:linear-gradient(to bottom,transparent,var(--accent),transparent);animation:scrollPulse 2.4s ease-in-out infinite; }
+        @keyframes scrollPulse { 0%,100%{opacity:.25;transform:scaleY(.9)}50%{opacity:1;transform:scaleY(1.1)} }
+
+        /* Terminal Section */
+        .ai-terminal-section {
+            position:relative;background:var(--bg-elevated);
+            border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+            padding:5.5rem 3rem;max-width:100%;overflow:hidden;z-index:1;
+        }
+        .ai-terminal-section::before {
+            content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+            width:900px;height:400px;background:radial-gradient(ellipse,rgba(167,139,250,.04),transparent 65%);pointer-events:none;
+        }
+        .ai-terminal-inner { max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center; }
+        .ai-terminal-copy .section-label,.ai-terminal-copy .section-title { text-align:left; }
+        .ai-terminal-copy .section-title { font-size:clamp(1.9rem,3.2vw,2.7rem);margin-top:.4rem; }
+        .ai-terminal-copy p { color:var(--text-dim);font-size:1rem;line-height:1.85;margin-top:1.1rem; }
+
+        .ai-term-box {
+            background:#08080a;border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden;
+            box-shadow:0 40px 100px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.03);position:relative;
+        }
+        .ai-term-box::before {
+            content:'';position:absolute;top:-1px;left:0;right:0;height:1px;
+            background:linear-gradient(90deg,transparent 10%,rgba(232,197,71,.5) 40%,rgba(167,139,250,.4) 60%,transparent 90%);
+        }
+        .ai-term-bar { padding:.9rem 1.2rem;display:flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.02);border-bottom:1px solid rgba(255,255,255,.05); }
+        .ai-term-dot { width:10px;height:10px;border-radius:50%; }
+        .ai-term-dot:nth-child(1){background:#ff5f57} .ai-term-dot:nth-child(2){background:#febc2e} .ai-term-dot:nth-child(3){background:#28c840}
+        .ai-term-title { font-family:var(--font-mono);font-size:.67rem;color:var(--text-muted);margin-left:auto; }
+        .ai-term-body { padding:1.6rem 1.4rem;font-family:var(--font-mono);font-size:.77rem;line-height:2.1; }
+        .ai-tl { opacity:0;transform:translateX(-4px); }
+        .tc-dim{color:var(--text-muted)} .tc-prompt{color:#a78bfa} .tc-user{color:var(--text-dim)}
+        .tc-sys{color:var(--accent)} .tc-ok{color:var(--success)} .tc-cyan{color:#22d3ee}
+        .ai-cursor { display:inline-block;width:7px;height:.9em;background:var(--accent);vertical-align:text-bottom;margin-left:2px;animation:cursorBlink 1.1s step-end infinite; }
+        @keyframes cursorBlink { 0%,100%{opacity:1}50%{opacity:0} }
+
+        /* Tracks */
+        .ai-tracks-section { padding:6rem 3rem;max-width:1200px;margin:0 auto;z-index:1;position:relative; }
+        .ai-tracks-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem; }
+        .ai-track {
+            background:var(--bg-card);border:1px solid var(--border);border-radius:18px;padding:2.25rem;
+            position:relative;overflow:hidden;cursor:default;
+        }
+        .ai-track::after {
+            content:'';position:absolute;top:0;left:0;right:0;height:1px;opacity:0;transition:opacity .4s;
+        }
+        .ai-track.t-gold::after  { background:linear-gradient(90deg,transparent,rgba(232,197,71,.7),transparent); }
+        .ai-track.t-violet::after { background:linear-gradient(90deg,transparent,rgba(167,139,250,.7),transparent); }
+        .ai-track.t-cyan::after  { background:linear-gradient(90deg,transparent,rgba(34,211,238,.7),transparent); }
+        .ai-track:hover::after { opacity:1; }
+        .ai-track-num { position:absolute;top:1.6rem;right:1.8rem;font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;opacity:.22;color:var(--text); }
+        .ai-track-ico { width:52px;height:52px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1.5rem; }
+        .t-gold .ai-track-ico  { background:rgba(232,197,71,.1); }
+        .t-violet .ai-track-ico { background:rgba(167,139,250,.1); }
+        .t-cyan .ai-track-ico  { background:rgba(34,211,238,.1); }
+        .ai-track-lbl { font-family:var(--font-mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:.6rem; }
+        .t-gold .ai-track-lbl  { color:var(--accent); }
+        .t-violet .ai-track-lbl { color:#a78bfa; }
+        .t-cyan .ai-track-lbl  { color:#22d3ee; }
+        .ai-track h3 { font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:.8rem; }
+        .ai-track p  { font-size:.87rem;color:var(--text-dim);line-height:1.75;margin-bottom:1.5rem; }
+        .ai-track-tags { display:flex;flex-wrap:wrap;gap:.4rem; }
+        .ai-tag { font-family:var(--font-mono);font-size:.59rem;padding:.22rem .58rem;border-radius:4px;letter-spacing:.04em; }
+        .t-gold .ai-tag  { background:rgba(232,197,71,.08);color:rgba(232,197,71,.8);border:1px solid rgba(232,197,71,.14); }
+        .t-violet .ai-tag { background:rgba(167,139,250,.08);color:rgba(167,139,250,.8);border:1px solid rgba(167,139,250,.14); }
+        .t-cyan .ai-tag  { background:rgba(34,211,238,.08);color:rgba(34,211,238,.8);border:1px solid rgba(34,211,238,.14); }
+
+        /* Pipeline */
+        .ai-pipeline-section {
+            background:var(--bg-elevated);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+            padding:6rem 3rem;max-width:100%;position:relative;z-index:1;overflow:hidden;
+        }
+        .ai-pipeline-section::before {
+            content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+            width:900px;height:300px;background:radial-gradient(ellipse,rgba(232,197,71,.035),transparent 60%);
+        }
+        .ai-pipeline-inner { max-width:1100px;margin:0 auto; }
+        .ai-steps { display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;margin-top:3.5rem;position:relative; }
+        .ai-steps::before {
+            content:'';position:absolute;top:28px;left:calc(10% + 28px);right:calc(10% + 28px);height:1px;
+            background:linear-gradient(90deg,rgba(232,197,71,.3),rgba(167,139,250,.3),rgba(34,211,238,.3),rgba(74,222,128,.3),rgba(232,197,71,.3));
+        }
+        .ai-step { display:flex;flex-direction:column;align-items:center;text-align:center;flex:1; }
+        .ai-step-num {
+            width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+            font-family:var(--font-mono);font-size:1rem;font-weight:500;margin-bottom:1rem;
+            border:1px solid;z-index:1;background:var(--bg-elevated);
+        }
+        .ai-step:nth-child(1) .ai-step-num { border-color:rgba(232,197,71,.25);color:var(--accent); }
+        .ai-step:nth-child(2) .ai-step-num { border-color:rgba(167,139,250,.25);color:#a78bfa; }
+        .ai-step:nth-child(3) .ai-step-num { border-color:rgba(34,211,238,.25);color:#22d3ee; }
+        .ai-step:nth-child(4) .ai-step-num { border-color:rgba(74,222,128,.25);color:var(--success); }
+        .ai-step:nth-child(5) .ai-step-num { border-color:rgba(232,197,71,.25);color:var(--accent); }
+        .ai-step-name { font-family:var(--font-display);font-size:.95rem;font-weight:700;margin-bottom:.4rem; }
+        .ai-step-desc { font-size:.76rem;color:var(--text-muted);line-height:1.55;max-width:130px; }
+
+        /* Why */
+        .ai-why-section { padding:6rem 3rem;max-width:1200px;margin:0 auto;z-index:1;position:relative; }
+        .ai-why-grid { display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3.5rem; }
+        .ai-why-card {
+            background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:2rem;
+            display:flex;gap:1.25rem;
+        }
+        .ai-why-ico { width:42px;height:42px;border-radius:10px;background:rgba(232,197,71,.08);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;color:var(--accent); }
+        .ai-why-card h3 { font-family:var(--font-display);font-size:1rem;font-weight:700;margin-bottom:.45rem; }
+        .ai-why-card p  { font-size:.85rem;color:var(--text-dim);line-height:1.7; }
+
+        /* Final CTA */
+        .ai-cta-section { text-align:center;padding:7rem 2rem 9rem;position:relative;z-index:1;overflow:hidden; }
+        .ai-cta-section::before { content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:72px;background:linear-gradient(to bottom,transparent,var(--border)); }
+        .ai-cta-orb { position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:500px;background:radial-gradient(ellipse,rgba(232,197,71,.05),transparent 60%);pointer-events:none; }
+        .ai-cta-section .section-title { font-size:clamp(2rem,4vw,3.2rem);margin:.6rem 0 1rem; }
+        .ai-cta-section .section-subtitle { margin-bottom:3rem;font-size:1.05rem; }
+        .ai-cta-form { display:flex;max-width:440px;margin:0 auto 1.5rem;border-radius:8px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.4),0 0 0 1px rgba(255,255,255,.04); }
+        .ai-cta-form input { flex:1;font-family:var(--font-body);font-size:.9rem;padding:1rem 1.25rem;background:var(--bg-elevated);border:1px solid rgba(255,255,255,.07);border-right:none;border-radius:8px 0 0 8px;color:var(--text);outline:none;transition:border-color .3s; }
+        .ai-cta-form input::placeholder { color:var(--text-muted); }
+        .ai-cta-form input:focus { border-color:rgba(232,197,71,.35); }
+        .ai-cta-form button { font-family:var(--font-mono);font-size:.7rem;letter-spacing:.1em;font-weight:500;padding:1rem 1.4rem;background:var(--accent);color:var(--bg);border:none;border-radius:0 8px 8px 0;cursor:pointer;white-space:nowrap;transition:background .3s; }
+        .ai-cta-form button:hover { background:var(--accent-hover); }
+        .ai-cta-note { font-family:var(--font-mono);font-size:.63rem;color:var(--text-muted); }
+
+        /* Responsive */
+        @media(max-width:1024px){ .ai-tracks-grid{grid-template-columns:1fr 1fr} }
+        @media(max-width:900px){
+            .ai-tracks-grid,.ai-why-grid{grid-template-columns:1fr}
+            .ai-terminal-inner{grid-template-columns:1fr;gap:3rem}
+            .ai-steps{flex-direction:column;align-items:center;gap:2rem}
+            .ai-steps::before{display:none}
+            .ai-step{width:100%;max-width:300px}
+            .ai-step-desc{max-width:none}
+            .ai-tracks-section,.ai-why-section{padding:4rem 1.5rem}
+            .ai-terminal-section,.ai-pipeline-section{padding:4rem 1.5rem}
+        }
+        @media(max-width:600px){
+            .ai-hero{padding:7rem 1.5rem 6rem}
+            .ai-form-wrap,.ai-cta-form{flex-direction:column}
+            .ai-form-wrap input,.ai-cta-form input{border-right:1px solid rgba(255,255,255,.07);border-bottom:none;border-radius:8px 8px 0 0}
+            .ai-form-wrap button,.ai-cta-form button{border-radius:0 0 8px 8px}
+        }
+        @media(prefers-reduced-motion:reduce){ #ai-canvas{display:none} }
+    </style>
+</head>
+<body>
+
+<canvas id="ai-canvas"></canvas>
+
+<nav id="navbar">
+    <a href="index.html" class="logo">&lt;<span>Egaal Software</span>/&gt;</a>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li>
+            <a href="#" data-dropdown>Solutions <span class="nav-arrow">▼</span></a>
+            <div class="mega-dropdown wide">
+                <div class="mega-grid">
+                    <div>
+                        <div class="mega-heading">Development</div>
+                        <a href="crm-development.html" class="mega-link"><div class="mega-link-icon">◈</div><div class="mega-link-text"><span class="mega-link-title">CRM Development</span><span class="mega-link-desc">Custom relationship management</span></div></a>
+                        <a href="inventory-management.html" class="mega-link"><div class="mega-link-icon">▦</div><div class="mega-link-text"><span class="mega-link-title">Inventory Management</span><span class="mega-link-desc">Stock & warehouse systems</span></div></a>
+                        <a href="financial-dashboards.html" class="mega-link"><div class="mega-link-icon">◇</div><div class="mega-link-text"><span class="mega-link-title">Financial Dashboards</span><span class="mega-link-desc">Real-time financial analytics</span></div></a>
+                        <a href="pos-systems.html" class="mega-link"><div class="mega-link-icon">▣</div><div class="mega-link-text"><span class="mega-link-title">POS Systems</span><span class="mega-link-desc">Point of sale solutions</span></div></a>
+                        <a href="maintenance-logs.html" class="mega-link"><div class="mega-link-icon">▤</div><div class="mega-link-text"><span class="mega-link-title">Maintenance Log Systems</span><span class="mega-link-desc">Asset tracking & scheduling</span></div></a>
+                    </div>
+                    <div>
+                        <div class="mega-heading">Engineering</div>
+                        <a href="backend-api.html" class="mega-link"><div class="mega-link-icon">⟐</div><div class="mega-link-text"><span class="mega-link-title">Backend API</span><span class="mega-link-desc">Scalable server-side systems</span></div></a>
+                        <a href="mobile-apps.html" class="mega-link"><div class="mega-link-icon">◉</div><div class="mega-link-text"><span class="mega-link-title">iOS / Android Apps</span><span class="mega-link-desc">Native & cross-platform</span></div></a>
+                        <a href="ui-ux-design.html" class="mega-link"><div class="mega-link-icon">◎</div><div class="mega-link-text"><span class="mega-link-title">UI/UX Design</span><span class="mega-link-desc">User-centred interfaces</span></div></a>
+                        <a href="bespoke-apps.html" class="mega-link"><div class="mega-link-icon">⬡</div><div class="mega-link-text"><span class="mega-link-title">Bespoke Full Stack Apps</span><span class="mega-link-desc">End-to-end custom software</span></div></a>
+                        <a href="ai-integration.html" class="mega-link"><div class="mega-link-icon">✦</div><div class="mega-link-text"><span class="mega-link-title">AI Agentic Integration</span><span class="mega-link-desc">Intelligent automation</span></div></a>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <a href="#" data-dropdown>Industries <span class="nav-arrow">▼</span></a>
+            <div class="mega-dropdown">
+                <div class="mega-single">
+                    <div class="mega-heading">Sectors We Serve</div>
+                    <a href="education.html" class="mega-link"><div class="mega-link-icon">◈</div><div class="mega-link-text"><span class="mega-link-title">Education</span><span class="mega-link-desc">E-learning platforms & tools</span></div></a>
+                    <a href="housing.html" class="mega-link"><div class="mega-link-icon">▣</div><div class="mega-link-text"><span class="mega-link-title">Housing (HMO)</span><span class="mega-link-desc">Property management CRMs</span></div></a>
+                    <a href="security.html" class="mega-link"><div class="mega-link-icon">◉</div><div class="mega-link-text"><span class="mega-link-title">Security</span><span class="mega-link-desc">Security software platforms</span></div></a>
+                </div>
+            </div>
+        </li>
+        <li>
+            <a href="#" data-dropdown>Company <span class="nav-arrow">▼</span></a>
+            <div class="mega-dropdown">
+                <div class="mega-single">
+                    <div class="mega-heading">About Egaal</div>
+                    <a href="team.html" class="mega-link"><div class="mega-link-icon">◉</div><div class="mega-link-text"><span class="mega-link-title">Our Team</span><span class="mega-link-desc">Meet the people behind the code</span></div></a>
+                    <a href="join.html" class="mega-link"><div class="mega-link-icon">+</div><div class="mega-link-text"><span class="mega-link-title">Join Our Team</span><span class="mega-link-desc">Apply to work with us</span></div></a>
+                </div>
+            </div>
+        </li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="ai-agency.html" class="nav-ai-btn active">AI Academy <span class="nav-ai-star">✦</span></a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- HERO -->
+<section class="ai-hero">
+    <div class="ai-orb ai-orb-1"></div>
+    <div class="ai-orb ai-orb-2"></div>
+    <div class="ai-orb ai-orb-3"></div>
+
+    <div class="ai-badge" id="heroBadge">
+        <span class="ai-badge-dot"></span>
+        Coming Soon — Join the Waitlist
+    </div>
+
+    <h1 class="ai-hero-title" id="heroTitle">
+        <span class="t1">Build the future.</span>
+        <span class="t2">Powered by AI.</span>
+        <span class="t3">Ship agency-grade software at a fraction of the time.</span>
+    </h1>
+
+    <p class="ai-hero-sub" id="heroSub">
+        Hands-on courses built exclusively for <strong>software development professionals</strong> and <strong>design professionals</strong> — teaching you to leverage AI to build
+        production-grade full-stack applications, mobile apps, and modern websites
+        the exact workflow our agency uses on real client projects every day.
+    </p>
+
+    <form class="ai-form-wrap" id="heroForm" name="ai-waitlist" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="ai-waitlist">
+        <input type="email" name="email" placeholder="Enter your email address" required>
+        <button type="submit">NOTIFY ME →</button>
+    </form>
+    <p class="ai-hero-note" id="heroNote">No spam. Early access only. Unsubscribe anytime.</p>
+
+    <div class="ai-scroll-cue">
+        <span class="ai-scroll-label">Explore</span>
+        <div class="ai-scroll-line"></div>
+    </div>
+</section>
+
+<!-- TERMINAL -->
+<div class="ai-terminal-section">
+    <div class="ai-terminal-inner">
+        <div class="ai-terminal-copy" id="termCopy">
+            <div class="section-label">AI-Powered Development</div>
+            <h2 class="section-title">From idea to <span class="highlight">production</span><br>in hours, not weeks.</h2>
+            <p>Learn the exact AI workflow our agency uses to build complex, production-ready software for real clients. No theory overload — just practical, repeatable techniques you can apply immediately.</p>
+        </div>
+        <div class="ai-term-box" id="aiTermBox">
+            <div class="ai-term-bar">
+                <span class="ai-term-dot"></span><span class="ai-term-dot"></span><span class="ai-term-dot"></span>
+                <span class="ai-term-title">egaal-ai-academy — bash</span>
+            </div>
+            <div class="ai-term-body" id="aiTermBody">
+                <div class="ai-tl"><span class="tc-dim">// Your first AI-assisted project brief</span></div>
+                <div class="ai-tl"><span class="tc-prompt">you</span> <span class="tc-user">→ Build a full HMO property CRM with tenant</span></div>
+                <div class="ai-tl"><span class="tc-user">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tracking, compliance alerts &amp; billing</span></div>
+                <div class="ai-tl">&nbsp;</div>
+                <div class="ai-tl"><span class="tc-sys">✦ Analysing requirements...</span></div>
+                <div class="ai-tl"><span class="tc-cyan">&nbsp;&nbsp;→ Architecture: Django REST + React</span></div>
+                <div class="ai-tl"><span class="tc-cyan">&nbsp;&nbsp;→ Database: PostgreSQL (14 models)</span></div>
+                <div class="ai-tl"><span class="tc-cyan">&nbsp;&nbsp;→ Async: Celery + Redis (compliance jobs)</span></div>
+                <div class="ai-tl"><span class="tc-cyan">&nbsp;&nbsp;→ Deploy: Docker → AWS EC2 + S3</span></div>
+                <div class="ai-tl">&nbsp;</div>
+                <div class="ai-tl"><span class="tc-ok">✓ Full project scaffolded.</span><span class="ai-cursor"></span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TRACKS -->
+<section class="ai-tracks-section">
+    <div class="section-header" id="tracksHeader">
+        <div class="section-label">Learning Tracks — For Professionals Only</div>
+        <h2 class="section-title">Three tracks.<br>One agency workflow.</h2>
+        <p class="section-subtitle">Built for practising software developers and designers who already know the fundamentals — and want to operate at agency speed using AI.</p>
+    </div>
+    <div class="ai-tracks-grid" id="tracksGrid">
+        <div class="ai-track t-gold">
+            <span class="ai-track-num">01</span>
+            <div class="ai-track-ico">⬡</div>
+            <div class="ai-track-lbl">Track One</div>
+            <h3>Full-Stack Applications</h3>
+            <p>For practising backend and full-stack developers. Use AI to architect, code, and deploy complex systems — CRMs, dashboards, multi-tenant SaaS — at the pace and standard of a professional agency.</p>
+            <div class="ai-track-tags">
+                <span class="ai-tag">Django</span><span class="ai-tag">React</span><span class="ai-tag">PostgreSQL</span>
+                <span class="ai-tag">REST API</span><span class="ai-tag">Docker</span><span class="ai-tag">AWS</span>
+                <span class="ai-tag">Redis</span><span class="ai-tag">Celery</span>
+            </div>
+        </div>
+        <div class="ai-track t-violet">
+            <span class="ai-track-num">02</span>
+            <div class="ai-track-ico">◉</div>
+            <div class="ai-track-lbl">Track Two</div>
+            <h3>Mobile Applications</h3>
+            <p>For practising mobile developers. Ship iOS and Android apps with AI-powered workflows — from concept to App Store — using the full mobile pipeline our team runs on live client projects.</p>
+            <div class="ai-track-tags">
+                <span class="ai-tag">React Native</span><span class="ai-tag">Expo</span><span class="ai-tag">iOS</span>
+                <span class="ai-tag">Android</span><span class="ai-tag">AI APIs</span><span class="ai-tag">Push Notifications</span>
+            </div>
+        </div>
+        <div class="ai-track t-cyan">
+            <span class="ai-track-num">03</span>
+            <div class="ai-track-ico">◎</div>
+            <div class="ai-track-lbl">Track Three</div>
+            <h3>Websites &amp; UI/UX Design</h3>
+            <p>For practising UI/UX designers and frontend developers. Learn AI-assisted design workflows — from wireframe to live production site — used by premium agencies to deliver at a fraction of the time.</p>
+            <div class="ai-track-tags">
+                <span class="ai-tag">HTML/CSS/JS</span><span class="ai-tag">TailwindCSS</span><span class="ai-tag">Figma</span>
+                <span class="ai-tag">Animation</span><span class="ai-tag">CMS</span><span class="ai-tag">SEO</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PIPELINE -->
+<div class="ai-pipeline-section">
+    <div class="ai-pipeline-inner">
+        <div class="section-header" id="pipelineHeader">
+            <div class="section-label">The Methodology</div>
+            <h2 class="section-title">Ship at <span class="highlight">agency speed</span>.</h2>
+            <p class="section-subtitle">Five steps. Every project. The same repeatable process our team uses on every client engagement — now taught step by step.</p>
+        </div>
+        <div class="ai-steps" id="pipelineSteps">
+            <div class="ai-step"><div class="ai-step-num">01</div><div class="ai-step-name">Brief</div><div class="ai-step-desc">Translate a client brief into an AI-ready specification</div></div>
+            <div class="ai-step"><div class="ai-step-num">02</div><div class="ai-step-name">Architect</div><div class="ai-step-desc">Use AI to design architecture, data models, and API contracts</div></div>
+            <div class="ai-step"><div class="ai-step-num">03</div><div class="ai-step-name">Build</div><div class="ai-step-desc">AI-assisted coding, component generation, and iterative sprints</div></div>
+            <div class="ai-step"><div class="ai-step-num">04</div><div class="ai-step-name">Test</div><div class="ai-step-desc">Automated testing, AI-powered code review, and QA</div></div>
+            <div class="ai-step"><div class="ai-step-num">05</div><div class="ai-step-name">Ship</div><div class="ai-step-desc">Docker, cloud deployment, and CI/CD pipeline setup</div></div>
+        </div>
+    </div>
+</div>
+
+<!-- WHY -->
+<section class="ai-why-section">
+    <div class="section-header" id="whyHeader">
+        <div class="section-label">Why Egaal AI Academy</div>
+        <h2 class="section-title">Built by practitioners,<br><span class="highlight">not lecturers</span>.</h2>
+        <p class="section-subtitle">Every course is built by engineers who ship these exact techniques on real client projects — every single week.</p>
+    </div>
+    <div class="ai-why-grid" id="whyGrid">
+        <div class="ai-why-card">
+            <div class="ai-why-ico">◈</div>
+            <div><h3>Real project curriculum</h3><p>Build the same software our agency ships to paying clients — CRM systems, mobile apps, security platforms. No toy projects.</p></div>
+        </div>
+        <div class="ai-why-card">
+            <div class="ai-why-ico">✦</div>
+            <div><h3>Agentic AI mastery</h3><p>Go beyond basic prompting. Build autonomous AI pipelines, integrate LLMs into real products, and use AI coding tools the way senior engineers do.</p></div>
+        </div>
+        <div class="ai-why-card">
+            <div class="ai-why-ico">▦</div>
+            <div><h3>Full deployment every time</h3><p>Every course ends with a live, deployed application — AWS, Docker, CI/CD included. You ship to production, not just localhost.</p></div>
+        </div>
+        <div class="ai-why-card">
+            <div class="ai-why-ico">◉</div>
+            <div><h3>Built for every level</h3><p>Starting from scratch or an experienced dev looking to 10× your output — each track is structured for your current level.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="ai-cta-section">
+    <div class="ai-cta-orb"></div>
+    <div class="section-label">Get Early Access</div>
+    <h2 class="section-title" id="ctaTitle">Be the first to <span class="highlight">build with AI</span>.</h2>
+    <p class="section-subtitle">Join the waitlist. Early access members get priority enrolment and a founding member discount when we launch.</p>
+    <form class="ai-cta-form" name="ai-waitlist-footer" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="ai-waitlist-footer">
+        <input type="email" name="email" placeholder="Enter your email address" required>
+        <button type="submit">NOTIFY ME →</button>
+    </form>
+    <p class="ai-cta-note">No spam. Unsubscribe anytime. Early members only.</p>
+</section>
+
+<footer>
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <a href="index.html" class="logo">&lt;<span>Egaal Software</span>/&gt;</a>
+            <p>Software consultancy delivering bespoke, scalable applications. From CRM systems to AI integration — we build software that drives your business forward. Established 2022.</p>
+        </div>
+        <div>
+            <div class="footer-heading">Solutions</div>
+            <div class="footer-links">
+                <a href="crm-development.html">CRM Development</a>
+                <a href="bespoke-apps.html">Bespoke Apps</a>
+                <a href="backend-api.html">Backend API</a>
+                <a href="ai-integration.html">AI Integration</a>
+                <a href="mobile-apps.html">Mobile Apps</a>
+            </div>
+        </div>
+        <div>
+            <div class="footer-heading">Company</div>
+            <div class="footer-links">
+                <a href="team.html">Our Team</a>
+                <a href="join.html">Join Our Team</a>
+                <a href="education.html">Education</a>
+                <a href="housing.html">Housing</a>
+                <a href="security.html">Security</a>
+                <a href="projects.html">Projects</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+        <div>
+            <div class="footer-heading">Connect</div>
+            <div class="footer-links">
+                <a href="mailto:egaalsoftwaresolutions@builtbyegaal.com">Email</a>
+                <a href="https://github.com/MEgaal02">GitHub</a>
+                <a href="https://linkedin.com/in/mahmoodegaal">LinkedIn</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="footer-text">© 2026 Egaal Software Solutions. All rights reserved.</div>
+
+    </div>
+</footer>
+
+<script src="main.js"></script>
+<!-- Motion (Framer Motion vanilla) -->
+<script src="https://cdn.jsdelivr.net/npm/motion@11.11.13/dist/motion.js"></script>
+<script>
+const { animate, inView, stagger } = Motion;
+
+/* ── Neural network canvas ── */
+(function () {
+    var canvas = document.getElementById('ai-canvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var W, H, pts, raf;
+    var COLS = ['rgba(232,197,71,','rgba(167,139,250,','rgba(34,211,238,'];
+
+    function resize() { W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
+    function init() {
+        pts = [];
+        var n = Math.min(70, Math.floor(W * H / 18000));
+        for (var i = 0; i < n; i++) pts.push({ x: Math.random()*W, y: Math.random()*H, vx:(Math.random()-.5)*.25, vy:(Math.random()-.5)*.25, r:Math.random()*1.5+.5, c:COLS[Math.floor(Math.random()*3)] });
+    }
+    function draw() {
+        ctx.clearRect(0, 0, W, H);
+        for (var i = 0; i < pts.length; i++) {
+            var p = pts[i]; p.x += p.vx; p.y += p.vy;
+            if (p.x < 0 || p.x > W) p.vx *= -1;
+            if (p.y < 0 || p.y > H) p.vy *= -1;
+            for (var j = i+1; j < pts.length; j++) {
+                var q=pts[j], dx=p.x-q.x, dy=p.y-q.y, d=Math.sqrt(dx*dx+dy*dy);
+                if (d < 160) { ctx.strokeStyle=p.c+(1-d/160)*.15+')'; ctx.lineWidth=.6; ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.stroke(); }
+            }
+            ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+            ctx.fillStyle = p.c + '.45)'; ctx.fill();
+        }
+        raf = requestAnimationFrame(draw);
+    }
+    resize(); init(); draw();
+    var t; window.addEventListener('resize', function(){ clearTimeout(t); t=setTimeout(function(){ cancelAnimationFrame(raf); resize(); init(); draw(); }, 200); });
+    document.addEventListener('visibilitychange', function(){ document.hidden ? cancelAnimationFrame(raf) : draw(); });
+})();
+
+/* ── Hero entrance (Motion spring) ── */
+animate('#heroBadge',  { opacity:[0,1], y:[20,0] }, { duration:.5, delay:.15, easing:[.22,1,.36,1] });
+animate('#heroTitle',  { opacity:[0,1], y:[40,0] }, { duration:.8, delay:.3,  easing:[.22,1,.36,1] });
+animate('#heroSub',    { opacity:[0,1], y:[30,0] }, { duration:.7, delay:.5,  easing:[.22,1,.36,1] });
+animate('#heroForm',   { opacity:[0,1], y:[24,0] }, { duration:.6, delay:.65, easing:[.22,1,.36,1] });
+animate('#heroNote',   { opacity:[0,1], y:[16,0] }, { duration:.5, delay:.8,  easing:[.22,1,.36,1] });
+
+/* ── Terminal section ── */
+inView('#termCopy', function() {
+    animate('#termCopy', { opacity:[0,1], x:[-40,0] }, { duration:.7, easing:[.22,1,.36,1] });
+});
+inView('#aiTermBox', function() {
+    animate('#aiTermBox', { opacity:[0,1], x:[40,0] }, { duration:.7, easing:[.22,1,.36,1] });
+    var lines = document.querySelectorAll('#aiTermBody .ai-tl');
+    lines.forEach(function(line, i) {
+        setTimeout(function() {
+            animate(line, { opacity:[0,1], x:[-6,0] }, { duration:.25, easing:'ease-out' });
+        }, 400 + i * 170);
+    });
+});
+
+/* ── Tracks ── */
+inView('#tracksHeader', function() {
+    animate('#tracksHeader', { opacity:[0,1], y:[30,0] }, { duration:.7, easing:[.22,1,.36,1] });
+});
+inView('#tracksGrid', function() {
+    var cards = document.querySelectorAll('.ai-track');
+    animate(cards, { opacity:[0,1], y:[50,0], scale:[.96,1] }, { duration:.65, delay:stagger(.12), easing:[.22,1,.36,1] });
+
+    cards.forEach(function(card) {
+        card.addEventListener('mouseenter', function() {
+            animate(card, { scale:1.025, y:-6 }, { duration:.35, easing:[.22,1,.36,1] });
+        });
+        card.addEventListener('mouseleave', function() {
+            animate(card, { scale:1, y:0 }, { duration:.35, easing:[.22,1,.36,1] });
+        });
+    });
+});
+
+/* ── Pipeline steps ── */
+inView('#pipelineHeader', function() {
+    animate('#pipelineHeader', { opacity:[0,1], y:[30,0] }, { duration:.7, easing:[.22,1,.36,1] });
+});
+inView('#pipelineSteps', function() {
+    var steps = document.querySelectorAll('.ai-step');
+    animate(steps, { opacity:[0,1], y:[40,0] }, { duration:.6, delay:stagger(.1), easing:[.22,1,.36,1] });
+
+    steps.forEach(function(step) {
+        var num = step.querySelector('.ai-step-num');
+        step.addEventListener('mouseenter', function() { animate(num, { scale:1.14 }, { duration:.3, easing:[.22,1,.36,1] }); });
+        step.addEventListener('mouseleave', function() { animate(num, { scale:1   }, { duration:.3, easing:[.22,1,.36,1] }); });
+    });
+});
+
+/* ── Why cards ── */
+inView('#whyHeader', function() {
+    animate('#whyHeader', { opacity:[0,1], y:[30,0] }, { duration:.7, easing:[.22,1,.36,1] });
+});
+inView('#whyGrid', function() {
+    var cards = document.querySelectorAll('.ai-why-card');
+    animate(cards, { opacity:[0,1], y:[40,0] }, { duration:.6, delay:stagger(.1), easing:[.22,1,.36,1] });
+
+    cards.forEach(function(card) {
+        card.addEventListener('mouseenter', function() {
+            animate(card, { y:-4, borderColor:'rgba(232,197,71,0.12)' }, { duration:.3, easing:[.22,1,.36,1] });
+        });
+        card.addEventListener('mouseleave', function() {
+            animate(card, { y:0,  borderColor:'rgba(255,255,255,0.06)' }, { duration:.3, easing:[.22,1,.36,1] });
+        });
+    });
+});
+
+/* ── CTA ── */
+inView('#ctaTitle', function() {
+    animate('#ctaTitle', { opacity:[0,1], y:[30,0] }, { duration:.7, easing:[.22,1,.36,1] });
+});
+</script>
+</body>
+</html>

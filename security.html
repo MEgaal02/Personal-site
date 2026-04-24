@@ -61,6 +61,7 @@
         </li>
         <li><a href="projects.html">Projects</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <li><a href="ai-agency.html" class="nav-ai-btn">AI Academy <span class="nav-ai-star">&#x2726;</span></a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu">
         <span></span><span></span><span></span>
@@ -68,72 +69,192 @@
 </nav>
 <div class="nav-overlay" id="navOverlay"></div>
 
-<section class="page-hero">
-    <div class="page-hero-tag">Industries</div>
-    <h1>Software for <span class="highlight">security</span>.</h1>
-    <p>We build security operations management platforms for guarding companies — guard scheduling, real-time incident reporting, client dashboards, and automated billing.</p>
-</section>
-
-<!-- Golden Crown Security with Mac Mockup -->
-<section>
-    <div class="project-scene reveal">
-        <div class="project-scene-cinema">
-            <div class="mac-wrap">
-                <div class="mac-body">
-                    <div class="mac-cam"></div>
-                    <div class="mac-display" data-video="project_content/golden%20crown%20security.mp4">
-                        <video src="project_content/golden%20crown%20security.mp4#t=2" muted loop playsinline preload="metadata"></video>
-                        <div class="mac-display-overlay"><div class="mac-play-btn"></div></div>
+<!-- ═══ HERO ═══ -->
+<section class="sec-hero">
+    <div class="sec-hero-inner">
+        <div class="sec-hero-left reveal">
+            <div class="page-hero-tag">Security</div>
+            <h1>Real-time operations.<br><span class="highlight">Zero paperwork.</span></h1>
+            <p>We build security operations management platforms for guarding companies — guard scheduling, real-time incident reporting, client dashboards, and automated billing. Built for companies ready to scale.</p>
+            <div class="sec-hero-stats">
+                <div class="sec-stat">
+                    <span class="sec-stat-num">100%</span>
+                    <span class="sec-stat-label">Paperless billing</span>
+                </div>
+                <div class="sec-stat">
+                    <span class="sec-stat-num">0</span>
+                    <span class="sec-stat-label">WhatsApp groups needed</span>
+                </div>
+                <div class="sec-stat">
+                    <span class="sec-stat-num">24/7</span>
+                    <span class="sec-stat-label">Live ops visibility</span>
+                </div>
+            </div>
+            <div class="case-actions">
+                <a href="contact.html" class="btn-primary">START A PROJECT</a>
+                <a href="projects.html" class="btn-secondary">SEE OUR WORK</a>
+            </div>
+        </div>
+        <div class="sec-hero-right reveal">
+            <div class="sec-ops-panel">
+                <div class="sec-ops-header">
+                    <span class="sec-ops-title">Live Operations</span>
+                    <div class="sec-ops-status">
+                        <span class="sec-ops-pulse"></span>
+                        System Online
                     </div>
                 </div>
-                <div class="mac-hinge"><div class="mac-hinge-slot"></div></div>
-                <div class="mac-stand"></div>
-            </div>
-        </div>
-        <div class="project-scene-header">
-            <h2 class="project-scene-title">Golden Crown Security</h2>
-            <div class="project-scene-badges">
-                <span class="project-status status-live" style="position:static;">● Live</span>
-            </div>
-        </div>
-        <div class="project-scene-body">
-            <p style="font-size:1rem;color:var(--text-dim);line-height:1.8;margin-bottom:2rem;max-width:780px;">Golden Crown Security was managing all guard operations via WhatsApp groups, phone calls, and paper logs — no real-time visibility into patrol coverage, no incident audit trail, and manual billing every month. We built a unified security operations management platform: supervisors manage guards and shifts from a web dashboard, guards log incidents from any device with GPS location tagging, and clients receive automated weekly performance reports. Billing is tied directly to validated timesheet data — zero paperwork.</p>
-            <div class="project-detail-meta" style="grid-template-columns:repeat(3,1fr);display:grid;gap:2rem;padding-top:1.5rem;border-top:1px solid var(--border);margin-bottom:2rem;">
-                <div class="meta-group"><h4>Role</h4><p>Full-Stack Development, UI/UX Design, Database Architecture, REST API, DevOps</p></div>
-                <div class="meta-group"><h4>Key Features</h4><p>Guard scheduling, incident logging, client reporting dashboard, automated timesheets, SIA licence tracking, mobile-responsive</p></div>
-                <div class="meta-group"><h4>Stack</h4><p>Django, React, PostgreSQL, Docker, AWS (EC2, S3), Celery, Redis, REST API</p></div>
-            </div>
-            <div class="case-stack">
-                <span>Django</span><span>React</span><span>PostgreSQL</span><span>REST API</span>
-                <span>Docker</span><span>AWS EC2</span><span>AWS S3</span><span>Celery</span><span>Redis</span>
-            </div>
-            <div class="case-actions" style="margin-top:1.5rem;">
-                <a href="projects.html" class="btn-secondary">FULL CASE STUDY</a>
-                <a href="contact.html" class="btn-secondary">START A PROJECT</a>
+                <div class="sec-ops-metric">
+                    <span class="sec-ops-label">Active Guards</span>
+                    <span class="sec-ops-value">12</span>
+                </div>
+                <div class="sec-ops-metric">
+                    <span class="sec-ops-label">Shift Coverage</span>
+                    <div class="sec-ops-bar"><div class="sec-ops-bar-fill" style="width:87%"></div></div>
+                    <span class="sec-ops-pct">87%</span>
+                </div>
+                <div class="sec-ops-metric">
+                    <span class="sec-ops-label">Open Incidents</span>
+                    <span class="sec-ops-badge green">0 Open</span>
+                </div>
+                <div class="sec-ops-metric">
+                    <span class="sec-ops-label">Reports Sent Today</span>
+                    <span class="sec-ops-value">8</span>
+                </div>
+                <div class="sec-ops-sites">
+                    <span class="sec-ops-sites-label">Active Sites</span>
+                    <div class="sec-site-grid">
+                        <div class="sec-site-item">
+                            <span class="sec-site-dot active"></span>
+                            <span class="sec-site-name">Site Alpha</span>
+                        </div>
+                        <div class="sec-site-item">
+                            <span class="sec-site-dot active"></span>
+                            <span class="sec-site-name">Site Bravo</span>
+                        </div>
+                        <div class="sec-site-item">
+                            <span class="sec-site-dot active"></span>
+                            <span class="sec-site-name">Site Charlie</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<section style="background: var(--bg-elevated); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+<!-- ═══ PROJECT SHOWCASE ═══ -->
+<section class="sec-showcase">
+    <div class="sec-showcase-inner">
+        <div class="sec-showcase-header reveal">
+            <div class="section-label">Case Study</div>
+            <h2 class="section-title">Golden Crown Security</h2>
+            <p class="section-subtitle">Replaced WhatsApp, phone calls, and paper logs with a unified security operations platform — live and in daily use.</p>
+        </div>
+        <div class="sec-mockup-row reveal">
+            <div class="mac-photo-wrap sec-mac">
+                <div class="mac-photo-screen">
+                    <img src="projects-content/goldencrown%20project/desktop%20thumb.png" alt="Golden Crown Security platform on desktop" loading="lazy">
+                </div>
+                <img src="projects-content/goldencrown%20project/empty%20mac.png" class="mac-photo-frame" alt="" aria-hidden="true">
+            </div>
+            <div class="iphone-photo-wrap">
+                <div class="iphone-photo-inner">
+                    <div class="iphone-photo-screen" style="padding-top:42px;">
+                        <img src="projects-content/goldencrown%20project/mobile%20thumb.png" alt="Golden Crown Security on mobile" loading="lazy" style="transform:scale(1.15) translateY(-12px);transform-origin:top center;">
+                    </div>
+                    <img src="projects-content/goldencrown%20project/empty%20iphone.png" class="iphone-photo-frame" alt="" aria-hidden="true">
+                </div>
+            </div>
+        </div>
+        <div class="case-actions" style="justify-content:center;margin-top:1.5rem;">
+            <a href="projects.html" class="btn-secondary">FULL CASE STUDY</a>
+            <a href="contact.html" class="btn-primary">START A PROJECT</a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ FEATURES ═══ -->
+<section class="sec-features-section">
     <div class="section-header reveal">
         <div class="section-label">What We Build</div>
-        <h2 class="section-title">Security Solutions</h2>
-        <p class="section-subtitle">Tailored software for physical security companies — built to replace the phone calls, WhatsApp groups, and paper logs.</p>
+        <h2 class="section-title">Security software,<br>built to operate.</h2>
+        <p class="section-subtitle">Tailored platforms for physical security companies — replacing WhatsApp groups and paper logs with a command-grade operations system.</p>
     </div>
-    <div class="solution-features">
-        <div class="feature-card reveal"><div class="feature-icon">◈</div><h3>Guard Management</h3><p>Schedule guards, manage shifts, track availability, and handle rotations across multiple sites from a single dashboard.</p></div>
-        <div class="feature-card reveal"><div class="feature-icon">◉</div><h3>Incident Reporting</h3><p>Guards log incidents in real time from any device — with GPS location tagging, timestamps, and photo attachments.</p></div>
-        <div class="feature-card reveal"><div class="feature-icon">◇</div><h3>Client Dashboards</h3><p>Automated weekly and monthly reports delivered to clients — patrol logs, incidents, and coverage metrics in one portal.</p></div>
-        <div class="feature-card reveal"><div class="feature-icon">▣</div><h3>Timesheet & Billing</h3><p>Digital timesheets generated automatically from shift data — eliminate disputes and speed up the billing cycle.</p></div>
-        <div class="feature-card reveal"><div class="feature-icon">⬡</div><h3>Compliance Tracking</h3><p>Track SIA licences, first aid certifications, and other credentials with automated expiry alerts.</p></div>
-        <div class="feature-card reveal"><div class="feature-icon">▤</div><h3>Mobile Access</h3><p>Guards and supervisors access the platform from any mobile device — no app install required.</p></div>
+    <div class="sec-features-grid">
+        <div class="sec-feat-card reveal">
+            <div class="sec-feat-indicator c-green">
+                <span class="sec-feat-pulse"></span>
+                Real-time
+            </div>
+            <div class="sec-feat-icon">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3>Guard Management</h3>
+            <p>Schedule guards, manage shifts, track availability, and handle rotations across multiple sites — all from a single operations dashboard.</p>
+        </div>
+        <div class="sec-feat-card reveal">
+            <div class="sec-feat-indicator c-blue">
+                <span class="sec-feat-pulse"></span>
+                Live Logging
+            </div>
+            <div class="sec-feat-icon">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3>Incident Reporting</h3>
+            <p>Guards log incidents in real time from any device — GPS location tagging, timestamps, and photo attachments for a full, searchable audit trail.</p>
+        </div>
+        <div class="sec-feat-card reveal">
+            <div class="sec-feat-indicator c-gold">
+                <span class="sec-feat-pulse"></span>
+                Automated
+            </div>
+            <div class="sec-feat-icon">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h3>Client Dashboards</h3>
+            <p>Automated weekly and monthly reports delivered to clients — patrol logs, incidents, and coverage metrics served through a branded client portal.</p>
+        </div>
+        <div class="sec-feat-card reveal">
+            <div class="sec-feat-indicator c-gold">
+                <span class="sec-feat-pulse"></span>
+                Automated
+            </div>
+            <div class="sec-feat-icon">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <h3>Timesheet &amp; Billing</h3>
+            <p>Digital timesheets generated automatically from shift data — eliminate billing disputes and reduce invoice time to near zero.</p>
+        </div>
+        <div class="sec-feat-card reveal">
+            <div class="sec-feat-indicator c-green">
+                <span class="sec-feat-pulse"></span>
+                Tracked
+            </div>
+            <div class="sec-feat-icon">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <h3>Compliance Tracking</h3>
+            <p>Track SIA licences, first aid certifications, and credentials with automated expiry alerts — never deploy a non-compliant guard.</p>
+        </div>
+        <div class="sec-feat-card reveal">
+            <div class="sec-feat-indicator c-blue">
+                <span class="sec-feat-pulse"></span>
+                Mobile-ready
+            </div>
+            <div class="sec-feat-icon">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            </div>
+            <h3>Mobile Access</h3>
+            <p>Guards and supervisors access the full platform from any mobile device — no app install required, works on any browser.</p>
+        </div>
     </div>
 </section>
 
-<section style="padding-bottom: 6rem;">
+<!-- ═══ CTA ═══ -->
+<section class="ind-cta-section">
     <div class="cta-banner reveal">
-        <h2>Running a <span style="color: var(--accent)">security company</span>?</h2>
+        <h2>Running a <span class="highlight">security company</span>?</h2>
         <p>Let's replace your spreadsheets and WhatsApp groups with software built for the job.</p>
         <a href="contact.html" class="btn-primary">GET IN TOUCH</a>
     </div>
@@ -184,7 +305,6 @@
     </div>
     <div class="footer-bottom">
         <div class="footer-text">© 2026 Egaal Software Solutions. All rights reserved.</div>
-        <div class="footer-association">Trading name of <span>TaxGen AI Ltd</span></div>
     </div>
 </footer>
 

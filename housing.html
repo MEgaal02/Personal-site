@@ -61,6 +61,7 @@
         </li>
         <li><a href="projects.html">Projects</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <li><a href="ai-agency.html" class="nav-ai-btn">AI Academy <span class="nav-ai-star">&#x2726;</span></a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu">
         <span></span><span></span><span></span>
@@ -68,67 +69,192 @@
 </nav>
 <div class="nav-overlay" id="navOverlay"></div>
 
-<section class="page-hero">
-    <div class="page-hero-tag">Industries</div>
-    <h1>Software for <span class="highlight">housing & HMO</span>.</h1>
-    <p>We're building bespoke CRM systems specifically for HMO property management — tenant tracking, compliance monitoring, maintenance scheduling, and financial reporting.</p>
+<!-- ═══ HERO ═══ -->
+<section class="hmo-hero">
+    <div class="hmo-hero-content reveal">
+        <div class="page-hero-tag">Housing &amp; HMO</div>
+        <h1>Your entire HMO portfolio.<br><span class="highlight">One platform.</span></h1>
+        <p>Purpose-built CRM for Houses in Multiple Occupation — tenant tracking, compliance monitoring, maintenance scheduling, and financial reporting. Designed by people who understand the HMO landscape.</p>
+    </div>
+    <div class="hmo-replaces reveal">
+        <div class="hmo-replaces-label">Replaces</div>
+        <div class="hmo-replaces-row">
+            <span class="hmo-old-tool">Spreadsheets</span>
+            <span class="hmo-old-tool">Paper contracts</span>
+            <span class="hmo-old-tool">Email chains</span>
+            <span class="hmo-old-tool">WhatsApp groups</span>
+            <span class="hmo-old-tool">Manual invoicing</span>
+            <span class="hmo-old-tool">Disconnected tools</span>
+        </div>
+    </div>
 </section>
 
-<!-- Redstone Housing CRM with Mac Mockup -->
-<section>
-    <div class="project-scene reveal">
-        <div class="project-scene-cinema">
-            <div class="mac-wrap">
-                <div class="mac-body">
-                    <div class="mac-cam"></div>
-                    <div class="mac-display" data-video="project_content/redstone%20housing%20crm%20video.mp4">
-                        <video src="project_content/redstone%20housing%20crm%20video.mp4#t=2" muted loop playsinline preload="metadata"></video>
-                        <div class="mac-display-overlay"><div class="mac-play-btn"></div></div>
+<!-- ═══ PORTFOLIO WIDGET + CASE STUDY SPLIT ═══ -->
+<section class="hmo-split">
+    <div class="hmo-split-inner">
+        <div class="hmo-split-left reveal">
+            <div class="hmo-portfolio-widget">
+                <div class="hmo-widget-header">
+                    <span class="hmo-widget-title">Property Portfolio</span>
+                    <span class="hmo-widget-badge">3 Properties</span>
+                </div>
+                <div class="hmo-prop-item">
+                    <div>
+                        <div class="hmo-prop-name">Birchfield Road, B19</div>
+                        <div class="hmo-prop-sub">8 rooms · 7 occupied</div>
+                    </div>
+                    <div class="hmo-prop-right">
+                        <span class="hmo-prop-status compliant">● Compliant</span>
+                        <span class="hmo-prop-occ">87% occupied</span>
                     </div>
                 </div>
-                <div class="mac-hinge"><div class="mac-hinge-slot"></div></div>
-                <div class="mac-stand"></div>
+                <div class="hmo-prop-item">
+                    <div>
+                        <div class="hmo-prop-name">Lozells Street, B21</div>
+                        <div class="hmo-prop-sub">6 rooms · 6 occupied</div>
+                    </div>
+                    <div class="hmo-prop-right">
+                        <span class="hmo-prop-status warning">● Cert Due</span>
+                        <span class="hmo-prop-occ">100% occupied</span>
+                    </div>
+                </div>
+                <div class="hmo-prop-item">
+                    <div>
+                        <div class="hmo-prop-name">Soho Road, B21</div>
+                        <div class="hmo-prop-sub">5 rooms · 4 occupied</div>
+                    </div>
+                    <div class="hmo-prop-right">
+                        <span class="hmo-prop-status compliant">● Compliant</span>
+                        <span class="hmo-prop-occ">80% occupied</span>
+                    </div>
+                </div>
+                <div class="hmo-widget-footer">
+                    <div>
+                        <span class="hmo-wf-label">Monthly Rent</span>
+                        <span class="hmo-wf-value">£8,400</span>
+                    </div>
+                    <div>
+                        <span class="hmo-wf-label">Avg Occupancy</span>
+                        <span class="hmo-wf-value">89%</span>
+                    </div>
+                    <div>
+                        <span class="hmo-wf-label">Certs Expiring</span>
+                        <span class="hmo-wf-value amber">2</span>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="project-scene-header">
-            <h2 class="project-scene-title">Redstone Housing CRM</h2>
-            <div class="project-scene-badges">
-                <span class="project-status status-dev" style="position:static;">● In Development</span>
-            </div>
-        </div>
-        <div class="project-scene-body">
-            <p style="font-size:1rem;color:var(--text-dim);line-height:1.8;margin-bottom:2rem;max-width:780px;">A purpose-built CRM for Houses in Multiple Occupation — designed by people who understand the HMO landscape. Redstone Housing's portfolio was managed across spreadsheets, paper contracts, and email chains. We are consolidating every aspect of their operations into a single intelligent platform: tenant management, compliance tracking, maintenance ticketing, room-level billing, and automated financial reporting.</p>
-            <div class="case-stack">
+        <div class="hmo-split-right reveal">
+            <div class="section-label">Case Study</div>
+            <h2>Redstone Housing CRM</h2>
+            <p>A purpose-built HMO management platform replacing spreadsheets, WhatsApp groups, and paper contracts — currently in active development for Redstone Housing's growing portfolio.</p>
+            <ul class="hmo-feat-list">
+                <li>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    Tenant management &amp; contract tracking
+                </li>
+                <li>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    HMO compliance &amp; licensing oversight
+                </li>
+                <li>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    Maintenance ticketing &amp; contractor management
+                </li>
+                <li>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    Room-level billing &amp; automated rent collection
+                </li>
+                <li>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    Automated financial reporting &amp; P&amp;L by property
+                </li>
+            </ul>
+            <div class="case-stack" style="margin-bottom:1.5rem;">
                 <span>Django</span><span>React</span><span>PostgreSQL</span>
                 <span>REST API</span><span>Docker</span><span>AWS</span><span>Celery</span><span>Redis</span>
             </div>
-            <div class="case-actions" style="margin-top:1.5rem;">
+            <div class="case-actions">
                 <a href="projects.html" class="btn-secondary">FULL CASE STUDY</a>
-                <a href="contact.html" class="btn-secondary">ENQUIRE ABOUT EARLY ACCESS</a>
+                <a href="contact.html" class="btn-primary">ENQUIRE NOW</a>
             </div>
         </div>
     </div>
 </section>
 
-<section style="background: var(--bg-elevated); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-    <div class="section-header reveal">
-        <div class="section-label">What We Build</div>
-        <h2 class="section-title">HMO Management Features</h2>
-        <p class="section-subtitle">A purpose-built CRM for Houses in Multiple Occupation — designed by people who understand the HMO landscape.</p>
-    </div>
-    <div class="solution-features">
-        <div class="feature-card reveal"><div class="feature-icon">◈</div><h3>Tenant Management</h3><p>Track tenants, contracts, rent payments, and communication history across all your properties.</p></div>
-        <div class="feature-card reveal"><div class="feature-icon">⬡</div><h3>Compliance & Licensing</h3><p>Stay on top of HMO licensing, gas safety certificates, EPC ratings, and inspection schedules.</p></div>
-        <div class="feature-card reveal"><div class="feature-icon">◇</div><h3>Maintenance Tracking</h3><p>Log maintenance requests, assign contractors, track costs, and monitor resolution times.</p></div>
-        <div class="feature-card reveal"><div class="feature-icon">◎</div><h3>Financial Reporting</h3><p>Rent collection, expense tracking, profit & loss by property, and automated invoicing.</p></div>
-        <div class="feature-card reveal"><div class="feature-icon">▣</div><h3>Room-Level Management</h3><p>HMO-specific room tracking — occupancy rates, individual room billing, and tenant allocation.</p></div>
-        <div class="feature-card reveal"><div class="feature-icon">▤</div><h3>Document Storage</h3><p>Centralised storage for tenancy agreements, certificates, photos, and correspondence.</p></div>
+<!-- ═══ MAC MOCKUP ═══ -->
+<section class="hmo-mockup-section reveal">
+    <div class="mac-photo-wrap" style="max-width:900px;margin:0 auto;">
+        <div class="mac-photo-screen">
+            <img src="projects-content/redstone%20project/desktop%20thumb.png" alt="Redstone Housing CRM on desktop" loading="lazy">
+        </div>
+        <img src="projects-content/redstone%20project/empty%20mac.png" class="mac-photo-frame" alt="" aria-hidden="true">
     </div>
 </section>
 
-<section style="padding-bottom: 6rem;">
+<!-- ═══ FEATURES ═══ -->
+<section class="hmo-features-section">
+    <div class="section-header reveal">
+        <div class="section-label">What We Build</div>
+        <h2 class="section-title">HMO management,<br>built to scale.</h2>
+        <p class="section-subtitle">Every feature designed specifically for Houses in Multiple Occupation — not adapted from a generic CRM.</p>
+    </div>
+    <div class="hmo-features-grid">
+        <div class="hmo-feat-card reveal">
+            <div class="hmo-feat-status">● Automated</div>
+            <div class="hmo-feat-icon">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            </div>
+            <h3>Tenant Management</h3>
+            <p>Track tenants, contracts, rent payments, and communication history across all your properties from a single unified dashboard.</p>
+        </div>
+        <div class="hmo-feat-card reveal">
+            <div class="hmo-feat-status">● Live</div>
+            <div class="hmo-feat-icon">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3>Compliance &amp; Licensing</h3>
+            <p>Stay on top of HMO licensing, gas safety certificates, EPC ratings, and inspection schedules with automated expiry alerts.</p>
+        </div>
+        <div class="hmo-feat-card reveal">
+            <div class="hmo-feat-status">● Tracked</div>
+            <div class="hmo-feat-icon">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <h3>Maintenance Tracking</h3>
+            <p>Log maintenance requests, assign contractors, track costs, and monitor resolution times — all in one place.</p>
+        </div>
+        <div class="hmo-feat-card reveal">
+            <div class="hmo-feat-status">● Automated</div>
+            <div class="hmo-feat-icon">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <h3>Financial Reporting</h3>
+            <p>Rent collection, expense tracking, profit &amp; loss by property, and automated invoicing — zero manual entry required.</p>
+        </div>
+        <div class="hmo-feat-card reveal">
+            <div class="hmo-feat-status">● Real-time</div>
+            <div class="hmo-feat-icon">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            </div>
+            <h3>Room-Level Management</h3>
+            <p>HMO-specific room tracking — occupancy rates, individual room billing, tenant allocation, and vacancy management.</p>
+        </div>
+        <div class="hmo-feat-card reveal">
+            <div class="hmo-feat-status">● Centralised</div>
+            <div class="hmo-feat-icon">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <h3>Document Storage</h3>
+            <p>Centralised storage for tenancy agreements, compliance certificates, inspection photos, and all tenant correspondence.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="ind-cta-section">
     <div class="cta-banner reveal">
-        <h2>Managing <span style="color: var(--accent)">HMO properties</span>?</h2>
+        <h2>Managing <span class="highlight">HMO properties</span>?</h2>
         <p>We'd love to hear about your pain points and build a solution that fits.</p>
         <a href="contact.html" class="btn-primary">TALK TO US</a>
     </div>
@@ -179,7 +305,6 @@
     </div>
     <div class="footer-bottom">
         <div class="footer-text">© 2026 Egaal Software Solutions. All rights reserved.</div>
-        <div class="footer-association">Trading name of <span>TaxGen AI Ltd</span></div>
     </div>
 </footer>
 

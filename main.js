@@ -85,11 +85,18 @@ window.addEventListener('load', function() {
     function bindVideoCard(card) {
         var vid = card.querySelector('video');
         var src = card.getAttribute('data-video');
+        var previewTime = parseFloat(card.getAttribute('data-preview-time')) || 0;
         if (!src) return;
         if (vid) {
             vid.muted = true;
-            card.onmouseenter = function() { vid.currentTime = 0; vid.play().catch(function(){}); };
-            card.onmouseleave = function() { vid.pause(); vid.currentTime = 0.5; };
+            card.onmouseenter = function() {
+                vid.currentTime = previewTime;
+                vid.play().catch(function(){});
+            };
+            card.onmouseleave = function() {
+                vid.pause();
+                vid.currentTime = previewTime;
+            };
         }
         card.onclick = function(e) { e.preventDefault(); e.stopPropagation(); openModal(src); };
     }
@@ -103,6 +110,24 @@ window.addEventListener('load', function() {
 
     // Bug fix: case-video on projects page
     document.querySelectorAll('.case-video[data-video]').forEach(bindVideoCard);
+
+    // Phone display click-to-modal
+    document.querySelectorAll('.phone-display[data-video]').forEach(bindVideoCard);
+
+    // Cross-device showcase — autoplay both videos when section enters view
+    var cdsStage = document.querySelector('.cds-stage');
+    if (cdsStage) {
+        var cdsVids = cdsStage.querySelectorAll('video');
+        var cdsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                cdsVids.forEach(function(v) {
+                    if (entry.isIntersecting) { v.play().catch(function(){}); }
+                    else { v.pause(); }
+                });
+            });
+        }, { threshold: 0.2 });
+        cdsObserver.observe(cdsStage);
+    }
 
     function openModal(src) {
         modalVid.src = src;
@@ -141,10 +166,68 @@ window.addEventListener('load', function() {
     document.addEventListener('mouseenter', function() { glow.style.opacity = '1'; });
 })();
 
+// ═══ GRAIN OVERLAY ═══
+(function() {
+    var grain = document.createElement('div');
+    grain.className = 'grain-overlay';
+    document.body.appendChild(grain);
+})();
+
+// ═══ MAC 3D TILT ═══
+(function() {
+    if (window.innerWidth <= 900) return;
+
+    function applyTilt(wrapper, mac) {
+        wrapper.classList.add('mac-tilt-wrapper');
+        var RAF = null;
+
+        wrapper.addEventListener('mousemove', function(e) {
+            if (RAF) cancelAnimationFrame(RAF);
+            RAF = requestAnimationFrame(function() {
+                var rect = wrapper.getBoundingClientRect();
+                var cx = rect.left + rect.width / 2;
+                var cy = rect.top + rect.height / 2;
+                var dx = (e.clientX - cx) / (rect.width / 2);
+                var dy = (e.clientY - cy) / (rect.height / 2);
+                var rotX = dy * -4;
+                var rotY = dx * 5;
+                mac.style.transform = 'rotateX(' + rotX + 'deg) rotateY(' + rotY + 'deg) scale(1.01)';
+            });
+        });
+
+        wrapper.addEventListener('mouseleave', function() {
+            if (RAF) cancelAnimationFrame(RAF);
+            mac.style.transform = '';
+        });
+    }
+
+    document.querySelectorAll('.work-card .mac-wrap').forEach(function(mac) {
+        applyTilt(mac.closest('.work-card'), mac);
+    });
+})();
+
+// ═══ MAGNETIC BUTTONS ═══
+(function() {
+    if (window.innerWidth <= 900) return;
+
+    document.querySelectorAll('.btn-primary, .btn-secondary').forEach(function(btn) {
+        btn.addEventListener('mousemove', function(e) {
+            var rect = btn.getBoundingClientRect();
+            var dx = (e.clientX - rect.left - rect.width / 2) * 0.2;
+            var dy = (e.clientY - rect.top - rect.height / 2) * 0.2;
+            btn.style.transform = 'translateX(' + dx + 'px) translateY(' + (dy - 2) + 'px)';
+        });
+        btn.addEventListener('mouseleave', function() {
+            btn.style.transform = '';
+        });
+    });
+})();
+
 // ═══ MOTION ANIMATIONS ═══
 (async function initMotion() {
     try {
         var M = await import('https://cdn.jsdelivr.net/npm/motion@latest/+esm');
+        var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         // 1. STATS COUNTER — count up from 0 when entering viewport
         document.querySelectorAll('.stat-number').forEach(function(el) {
@@ -152,6 +235,7 @@ window.addEventListener('load', function() {
             var num = parseFloat(raw);
             var suffix = raw.replace(/[\d.]/g, '');
             if (!num) return;
+            if (reducedMotion) return; // skip counting animation, show value immediately
             var fired = false;
             M.inView(el, function() {
                 if (fired) return;
@@ -169,9 +253,9 @@ window.addEventListener('load', function() {
             }, { amount: 0.6 });
         });
 
-        // 2. HERO SCROLL PARALLAX (home page only, desktop only)
+        // 2. HERO SCROLL PARALLAX (home page only, desktop only, no reduced-motion)
         var hero = document.querySelector('.home-hero');
-        if (hero && window.innerWidth > 900) {
+        if (hero && window.innerWidth > 900 && !reducedMotion) {
             var heroLeft = document.querySelector('.hero-left');
             var heroRight = document.querySelector('.hero-right');
             if (heroLeft && heroRight) {
@@ -186,27 +270,99 @@ window.addEventListener('load', function() {
             }
         }
 
-        // 3. WORK GRID STAGGER (home page)
+        // 3. WORK GRID STAGGER
         var workGrid = document.querySelector('.work-grid');
         if (workGrid) {
             var cards = workGrid.querySelectorAll('.work-card');
-            cards.forEach(function(c) {
-                c.classList.remove('reveal');
-                c.style.opacity = '0';
-                c.style.transform = 'translateY(36px)';
-            });
-            M.inView(workGrid, function() {
-                M.animate(cards,
-                    { opacity: [0, 1], y: [36, 0] },
-                    { duration: 0.65, delay: M.stagger(0.14), easing: [0.22, 1, 0.36, 1] }
+            if (!reducedMotion) {
+                cards.forEach(function(c) {
+                    c.classList.remove('reveal');
+                    c.style.opacity = '0';
+                    c.style.transform = 'translateY(36px)';
+                });
+                M.inView(workGrid, function() {
+                    M.animate(cards,
+                        { opacity: [0, 1], y: [36, 0] },
+                        { duration: 0.65, delay: M.stagger(0.1), easing: [0.22, 1, 0.36, 1] }
+                    );
+                }, { amount: 0.05 });
+            }
+        }
+
+        // 4. DEVICE SHOWCASE ENTRANCE
+        // Phone's CSS base position is translateY(20px) rotate(3deg) — entrance ends there,
+        // then inline style is cleared so CSS phoneFloat animation takes over seamlessly.
+        var cdsStage = document.querySelector('.cds-stage');
+        if (cdsStage && !reducedMotion) {
+            var macEl = cdsStage.querySelector('.mac-wrap');
+            var phoneEl = cdsStage.querySelector('.phone-wrap');
+            if (macEl) { macEl.style.opacity = '0'; macEl.style.transform = 'translateY(70px)'; }
+            if (phoneEl) { phoneEl.style.opacity = '0'; phoneEl.style.transform = 'translateY(90px) rotate(8deg)'; }
+            M.inView(cdsStage, function() {
+                if (macEl) M.animate(macEl,
+                    { opacity: [0, 1], y: [70, 0] },
+                    { duration: 0.95, easing: [0.22, 1, 0.36, 1] }
                 );
-            }, { amount: 0.05 });
+                if (phoneEl) {
+                    M.animate(phoneEl,
+                        { opacity: [0, 1], y: [90, 20], rotate: [8, 3] },
+                        { duration: 1.15, delay: 0.18, easing: [0.22, 1, 0.36, 1] }
+                    ).then(function() {
+                        // Clear Motion's inline transform so CSS phoneFloat resumes from its base
+                        phoneEl.style.transform = '';
+                        phoneEl.style.opacity = '';
+                    });
+                }
+            }, { amount: 0.15 });
+        }
+
+        // 5. SERVICE CARDS STAGGER
+        var servicesGrid = document.querySelector('.services-preview');
+        if (servicesGrid && !reducedMotion) {
+            var sCards = servicesGrid.querySelectorAll('.service-preview-card');
+            sCards.forEach(function(c) { c.classList.remove('reveal'); c.style.opacity = '0'; c.style.transform = 'translateY(28px)'; });
+            M.inView(servicesGrid, function() {
+                M.animate(sCards,
+                    { opacity: [0, 1], y: [28, 0] },
+                    { duration: 0.6, delay: M.stagger(0.1), easing: [0.22, 1, 0.36, 1] }
+                );
+            }, { amount: 0.2 });
+        }
+
+        // 6. CDS FEATURE PILLS STAGGER
+        var cdsFeats = document.querySelectorAll('.cds-feat');
+        if (cdsFeats.length && !reducedMotion) {
+            cdsFeats.forEach(function(f) { f.style.opacity = '0'; f.style.transform = 'translateY(14px)'; });
+            var cdsFeatContainer = document.querySelector('.cds-features');
+            if (cdsFeatContainer) {
+                M.inView(cdsFeatContainer, function() {
+                    M.animate(cdsFeats,
+                        { opacity: [0, 1], y: [14, 0] },
+                        { duration: 0.45, delay: M.stagger(0.08), easing: [0.22, 1, 0.36, 1] }
+                    );
+                }, { amount: 0.4 });
+            }
         }
 
     } catch(e) {
         // Motion CDN unavailable — existing CSS animations cover everything
     }
 })();
+
+// ═══ DEVICE VIEWER TABS ═══
+document.querySelectorAll('.device-viewer').forEach(function(viewer) {
+    var tabs = viewer.querySelectorAll('.device-tab');
+    var panels = viewer.querySelectorAll('.device-tab-panel');
+    tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+            var target = this.getAttribute('data-tab');
+            tabs.forEach(function(t) { t.classList.remove('active'); });
+            panels.forEach(function(p) { p.classList.remove('active'); });
+            this.classList.add('active');
+            viewer.querySelector('[data-panel="' + target + '"]').classList.add('active');
+        });
+    });
+});
 
 // ═══ SMOOTH SCROLL ═══
 document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {

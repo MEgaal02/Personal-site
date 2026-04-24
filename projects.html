@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -61,6 +61,7 @@
         </li>
         <li><a href="projects.html" class="active">Projects</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <li><a href="ai-agency.html" class="nav-ai-btn">AI Academy <span class="nav-ai-star">&#x2726;</span></a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu">
         <span></span><span></span><span></span>
@@ -75,19 +76,42 @@
 </section>
 
 <!-- ═══ NAGEYE SCHOOL OF LANGUAGES ═══ -->
-<section>
+<section id="project-nageye">
     <div class="project-scene reveal">
         <div class="project-scene-cinema">
-            <div class="mac-wrap">
-                <div class="mac-body">
-                    <div class="mac-cam"></div>
-                    <div class="mac-display" data-video="nageye-demo.mp4">
-                        <video src="nageye-demo.mp4#t=3" muted loop playsinline preload="metadata" poster="project_content/nageye%20school%20of%20languages.jpg"></video>
-                        <div class="mac-display-overlay"><div class="mac-play-btn"></div></div>
+            <div class="device-viewer">
+                <div class="device-tabs">
+                    <button class="device-tab active" data-tab="desktop">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        Desktop
+                    </button>
+                    <button class="device-tab" data-tab="mobile">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                        Mobile
+                    </button>
+                </div>
+                <div class="device-tab-panel active" data-panel="desktop">
+                    <div class="device-duo device-solo">
+                        <div class="mac-wrap mac-photo-wrap">
+                            <div class="mac-photo-screen">
+                                <img src="projects-content/nageye%20project/desktop%20thumb.png" alt="Nageye School of Languages" loading="lazy">
+                            </div>
+                            <img src="projects-content/nageye%20project/empty%20mac.png" class="mac-photo-frame" alt="" aria-hidden="true">
+                        </div>
                     </div>
                 </div>
-                <div class="mac-hinge"><div class="mac-hinge-slot"></div></div>
-                <div class="mac-stand"></div>
+                <div class="device-tab-panel" data-panel="mobile">
+                    <div class="device-mobile-solo">
+                        <div class="iphone-photo-wrap">
+                            <div class="iphone-photo-inner">
+                                <div class="iphone-photo-screen">
+                                    <img src="projects-content/nageye%20project/mobile%20phone%20thumb.png" alt="Nageye platform on mobile" loading="lazy">
+                                </div>
+                                <img src="projects-content/nageye%20project/empty%20iphone.png" class="iphone-photo-frame" alt="" aria-hidden="true">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="project-scene-header">
@@ -150,19 +174,16 @@
 </section>
 
 <!-- ═══ REDSTONE HOUSING CRM ═══ -->
-<section style="padding-top: 0;">
+<section id="project-redstone" style="padding-top: 0;">
     <div class="project-scene reveal">
         <div class="project-scene-cinema">
-            <div class="mac-wrap">
-                <div class="mac-body">
-                    <div class="mac-cam"></div>
-                    <div class="mac-display" data-video="project_content/redstone%20housing%20crm%20video.mp4">
-                        <video src="project_content/redstone%20housing%20crm%20video.mp4#t=2" muted loop playsinline preload="metadata"></video>
-                        <div class="mac-display-overlay"><div class="mac-play-btn"></div></div>
+            <div class="device-duo">
+                <div class="mac-wrap mac-photo-wrap">
+                    <div class="mac-photo-screen">
+                        <img src="projects-content/redstone%20project/desktop%20thumb.png" alt="Redstone Housing CRM" loading="lazy">
                     </div>
+                    <img src="projects-content/redstone%20project/empty%20mac.png" class="mac-photo-frame" alt="" aria-hidden="true">
                 </div>
-                <div class="mac-hinge"><div class="mac-hinge-slot"></div></div>
-                <div class="mac-stand"></div>
             </div>
         </div>
         <div class="project-scene-header">
@@ -221,19 +242,42 @@
 </section>
 
 <!-- ═══ GOLDEN CROWN SECURITY ═══ -->
-<section style="padding-top: 0;">
+<section id="project-golden-crown" style="padding-top: 0;">
     <div class="project-scene reveal">
         <div class="project-scene-cinema">
-            <div class="mac-wrap">
-                <div class="mac-body">
-                    <div class="mac-cam"></div>
-                    <div class="mac-display" data-video="project_content/golden%20crown%20security.mp4">
-                        <video src="project_content/golden%20crown%20security.mp4#t=2" muted loop playsinline preload="metadata"></video>
-                        <div class="mac-display-overlay"><div class="mac-play-btn"></div></div>
+            <div class="device-viewer">
+                <div class="device-tabs">
+                    <button class="device-tab active" data-tab="desktop">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        Desktop
+                    </button>
+                    <button class="device-tab" data-tab="mobile">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                        Mobile
+                    </button>
+                </div>
+                <div class="device-tab-panel active" data-panel="desktop">
+                    <div class="device-duo device-solo">
+                        <div class="mac-wrap mac-photo-wrap">
+                            <div class="mac-photo-screen">
+                                <img src="projects-content/goldencrown%20project/desktop%20thumb.png" alt="Golden Crown Security" loading="lazy">
+                            </div>
+                            <img src="projects-content/goldencrown%20project/empty%20mac.png" class="mac-photo-frame" alt="" aria-hidden="true">
+                        </div>
                     </div>
                 </div>
-                <div class="mac-hinge"><div class="mac-hinge-slot"></div></div>
-                <div class="mac-stand"></div>
+                <div class="device-tab-panel" data-panel="mobile">
+                    <div class="device-mobile-solo">
+                        <div class="iphone-photo-wrap">
+                            <div class="iphone-photo-inner">
+                                <div class="iphone-photo-screen" style="padding-top: 42px;">
+                                    <img src="projects-content/goldencrown%20project/mobile%20thumb.png" alt="Golden Crown Security on mobile" loading="lazy" style="transform: scale(1.15) translateY(-12px); transform-origin: top center;">
+                                </div>
+                                <img src="projects-content/goldencrown%20project/empty%20iphone.png" class="iphone-photo-frame" alt="" aria-hidden="true">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="project-scene-header">
@@ -347,7 +391,7 @@
     </div>
     <div class="footer-bottom">
         <div class="footer-text">© 2026 Egaal Software Solutions. All rights reserved.</div>
-        <div class="footer-association">Trading name of <span>TaxGen AI Ltd</span></div>
+
     </div>
 </footer>
 

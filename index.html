@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -92,6 +92,7 @@
         </li>
         <li><a href="projects.html">Projects</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <li><a href="ai-agency.html" class="nav-ai-btn">AI Academy <span class="nav-ai-star">&#x2726;</span></a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu">
         <span></span><span></span><span></span>
@@ -100,6 +101,8 @@
 <div class="nav-overlay" id="navOverlay"></div>
 
 <section class="home-hero">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
     <div class="hero-left">
         <div class="hero-tag">Scalable Software Solutions</div>
         <h1 class="hero-name">We build <span class="highlight">bespoke software</span> that drives your business forward.</h1>
@@ -119,7 +122,6 @@
                 <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">"company"</span>: <span class="t-string">"Egaal Software Solutions"</span>,</div>
                 <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">"solutions"</span>: <span class="t-string">"CRM, APIs, Mobile, AI"</span>,</div>
                 <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">"industries"</span>: <span class="t-string">"Education, Housing, Security"</span>,</div>
-                <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">"projects"</span>: <span class="t-value">3</span>,</div>
                 <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">"ceo"</span>: <span class="t-string">"Mahamood Egaal"</span>,</div>
                 <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">"status"</span>: <span class="t-value">"Accepting Clients"</span>,</div>
                 <div class="terminal-line"><span class="t-bracket">}</span></div>
@@ -137,6 +139,59 @@
     </div>
 </section>
 
+<!-- DEVICE SHOWCASE -->
+<section class="cross-device-section">
+    <div class="cds-ambient"></div>
+    <div class="cds-inner">
+
+        <div class="section-header reveal">
+            <div class="section-label">Every Platform</div>
+            <h2 class="section-title">Built for every screen</h2>
+            <p class="section-subtitle">Beautiful software designed to work exactly how your team works — at the desk or on the move.</p>
+        </div>
+
+        <div class="cds-stage reveal">
+
+            <div class="cds-glow cds-glow-mac"></div>
+            <div class="cds-glow cds-glow-phone"></div>
+
+            <div class="device-duo">
+                <div class="mac-wrap mac-photo-wrap">
+                    <div class="cds-badge cds-badge-desktop">
+                        <div class="cds-badge-dot"></div>
+                        <span>Live on desktop</span>
+                    </div>
+                    <div class="mac-photo-screen">
+                        <img src="builtbyeveryscreen/deskop_thumb.png" alt="Egaal platform on desktop" loading="lazy">
+                    </div>
+                    <img src="builtbyeveryscreen/empty%20mac.png" class="mac-photo-frame" alt="" aria-hidden="true">
+                </div>
+                <div class="phone-wrap iphone-photo-wrap">
+                    <div class="cds-badge cds-badge-mobile">
+                        <div class="cds-badge-dot"></div>
+                        <span>Mobile-first</span>
+                    </div>
+                    <div class="iphone-photo-inner">
+                        <div class="iphone-photo-screen" style="padding-top: 42px;">
+                            <img src="builtbyeveryscreen/mobile_thumb.png" alt="Egaal platform on mobile" loading="lazy" style="transform: scale(1.15); transform-origin: top center;">
+                        </div>
+                        <img src="builtbyeveryscreen/empty%20iphone.png" class="iphone-photo-frame" alt="" aria-hidden="true">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="cds-features reveal">
+            <div class="cds-feat"><span>◈</span>Web Dashboard</div>
+            <div class="cds-feat"><span>◉</span>iOS &amp; Android</div>
+            <div class="cds-feat"><span>▦</span>Real-Time Sync</div>
+            <div class="cds-feat"><span>✦</span>AI-Powered</div>
+        </div>
+
+    </div>
+</section>
+
 <!-- CLIENTS TRUST SLIDER -->
 <div class="clients-section">
     <div class="clients-header">
@@ -144,13 +199,40 @@
     </div>
     <div class="clients-ticker">
         <div class="clients-track">
-            <div class="logo-card"><img src="project_content/nageye%20school%20of%20languages.jpg" alt="Nageye School of Languages"></div>
-            <div class="logo-card"><img src="project_content/red_stone_housing_faithful_logo_1776877071816.jpg" alt="Redstone Housing"></div>
-            <div class="logo-card"><img src="project_content/golden%20crown%20managament%20logo.png" alt="Golden Crown Security"></div>
-            <!-- Duplicate set for seamless infinite loop -->
-            <div class="logo-card"><img src="project_content/nageye%20school%20of%20languages.jpg" alt="Nageye School of Languages"></div>
-            <div class="logo-card"><img src="project_content/red_stone_housing_faithful_logo_1776877071816.jpg" alt="Redstone Housing"></div>
-            <div class="logo-card"><img src="project_content/golden%20crown%20managament%20logo.png" alt="Golden Crown Security"></div>
+            <!-- Set A -->
+            <div class="logo-card"><img src="logos/nageye_transparent.png" alt="Nageye School of Languages"></div>
+            <div class="logo-card"><img src="logos/redstone_transparent.png" alt="Redstone Housing Solutions"></div>
+            <div class="logo-card"><img src="logos/golden_crown_transparent.png" alt="Golden Crown Management"></div>
+            <div class="logo-card"><img src="logos/raydab logo.jpg" alt="Raydab" class="logo-badge"></div>
+            <div class="logo-card"><img src="logos/nageye_transparent.png" alt="Nageye School of Languages"></div>
+            <div class="logo-card"><img src="logos/redstone_transparent.png" alt="Redstone Housing Solutions"></div>
+            <div class="logo-card"><img src="logos/golden_crown_transparent.png" alt="Golden Crown Management"></div>
+            <div class="logo-card"><img src="logos/raydab logo.jpg" alt="Raydab" class="logo-badge"></div>
+            <div class="logo-card"><img src="logos/nageye_transparent.png" alt="Nageye School of Languages"></div>
+            <div class="logo-card"><img src="logos/redstone_transparent.png" alt="Redstone Housing Solutions"></div>
+            <div class="logo-card"><img src="logos/golden_crown_transparent.png" alt="Golden Crown Management"></div>
+            <div class="logo-card"><img src="logos/raydab logo.jpg" alt="Raydab" class="logo-badge"></div>
+            <div class="logo-card"><img src="logos/nageye_transparent.png" alt="Nageye School of Languages"></div>
+            <div class="logo-card"><img src="logos/redstone_transparent.png" alt="Redstone Housing Solutions"></div>
+            <div class="logo-card"><img src="logos/golden_crown_transparent.png" alt="Golden Crown Management"></div>
+            <div class="logo-card"><img src="logos/raydab logo.jpg" alt="Raydab" class="logo-badge"></div>
+            <!-- Set B — identical copy for seamless -50% loop -->
+            <div class="logo-card"><img src="logos/nageye_transparent.png" alt="Nageye School of Languages"></div>
+            <div class="logo-card"><img src="logos/redstone_transparent.png" alt="Redstone Housing Solutions"></div>
+            <div class="logo-card"><img src="logos/golden_crown_transparent.png" alt="Golden Crown Management"></div>
+            <div class="logo-card"><img src="logos/raydab logo.jpg" alt="Raydab" class="logo-badge"></div>
+            <div class="logo-card"><img src="logos/nageye_transparent.png" alt="Nageye School of Languages"></div>
+            <div class="logo-card"><img src="logos/redstone_transparent.png" alt="Redstone Housing Solutions"></div>
+            <div class="logo-card"><img src="logos/golden_crown_transparent.png" alt="Golden Crown Management"></div>
+            <div class="logo-card"><img src="logos/raydab logo.jpg" alt="Raydab" class="logo-badge"></div>
+            <div class="logo-card"><img src="logos/nageye_transparent.png" alt="Nageye School of Languages"></div>
+            <div class="logo-card"><img src="logos/redstone_transparent.png" alt="Redstone Housing Solutions"></div>
+            <div class="logo-card"><img src="logos/golden_crown_transparent.png" alt="Golden Crown Management"></div>
+            <div class="logo-card"><img src="logos/raydab logo.jpg" alt="Raydab" class="logo-badge"></div>
+            <div class="logo-card"><img src="logos/nageye_transparent.png" alt="Nageye School of Languages"></div>
+            <div class="logo-card"><img src="logos/redstone_transparent.png" alt="Redstone Housing Solutions"></div>
+            <div class="logo-card"><img src="logos/golden_crown_transparent.png" alt="Golden Crown Management"></div>
+            <div class="logo-card"><img src="logos/raydab logo.jpg" alt="Raydab" class="logo-badge"></div>
         </div>
     </div>
 </div>
@@ -182,12 +264,12 @@
 
         <!-- Nageye School of Languages -->
         <div class="work-card reveal">
-            <a href="projects.html" class="work-card-link">
+            <a href="projects.html#project-nageye" class="work-card-link">
                 <div class="mac-wrap">
                     <div class="mac-body">
                         <div class="mac-cam"></div>
                         <div class="mac-display no-overlay">
-                            <video src="nageye-demo.mp4#t=3" muted playsinline preload="metadata" poster="project_content/nageye%20school%20of%20languages.jpg"></video>
+                            <img src="desktop-app%20thumbs%20for%20project%20page/nageyeschool%20thumb.png" alt="Nageye School of Languages platform" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;">
                         </div>
                     </div>
                     <div class="mac-hinge"><div class="mac-hinge-slot"></div></div>
@@ -207,12 +289,12 @@
 
         <!-- Redstone Housing CRM -->
         <div class="work-card reveal">
-            <a href="housing.html" class="work-card-link">
+            <a href="projects.html#project-redstone" class="work-card-link">
                 <div class="mac-wrap">
                     <div class="mac-body">
                         <div class="mac-cam"></div>
                         <div class="mac-display no-overlay">
-                            <video src="project_content/redstone%20housing%20crm%20video.mp4#t=2" muted playsinline preload="metadata"></video>
+                            <img src="desktop-app%20thumbs%20for%20project%20page/redstone%20thumb.png" alt="Redstone Housing CRM dashboard" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;">
                         </div>
                     </div>
                     <div class="mac-hinge"><div class="mac-hinge-slot"></div></div>
@@ -221,7 +303,7 @@
                 <div class="work-info">
                     <div class="work-meta">
                         Housing &nbsp;·&nbsp;
-                        <span class="project-status status-dev" style="position:static;font-size:0.62rem;">● In Development</span>
+                        <span class="project-status status-live" style="position:static;font-size:0.62rem;">● Live</span>
                     </div>
                     <h3>Redstone Housing CRM</h3>
                     <p>Purpose-built CRM for HMO property management — tenant tracking, compliance monitoring, and financial reporting.</p>
@@ -232,12 +314,12 @@
 
         <!-- Golden Crown Security -->
         <div class="work-card reveal">
-            <a href="security.html" class="work-card-link">
+            <a href="projects.html#project-golden-crown" class="work-card-link">
                 <div class="mac-wrap">
                     <div class="mac-body">
                         <div class="mac-cam"></div>
                         <div class="mac-display no-overlay">
-                            <video src="project_content/golden%20crown%20security.mp4#t=2" muted playsinline preload="metadata"></video>
+                            <img src="desktop-app%20thumbs%20for%20project%20page/golden%20crown%20desktop%20thumb.png" alt="Golden Crown Security control panel" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;">
                         </div>
                     </div>
                     <div class="mac-hinge"><div class="mac-hinge-slot"></div></div>
@@ -314,7 +396,7 @@
     </div>
     <div class="footer-bottom">
         <div class="footer-text">© 2026 Egaal Software Solutions. All rights reserved.</div>
-        <div class="footer-association">Trading name of <span>TaxGen AI Ltd</span></div>
+
     </div>
 </footer>
 
