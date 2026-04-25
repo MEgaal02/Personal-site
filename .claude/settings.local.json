@@ -14,7 +14,9 @@
       "Bash(python -m pip install requests)",
       "Bash(python generate_vo.py)",
       "Bash(python *)",
-      "Bash(xargs -I{} basename {})"
+      "Bash(xargs -I{} basename {})",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
     ]
   }
 }
