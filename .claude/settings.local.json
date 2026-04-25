@@ -13,7 +13,8 @@
       "PowerShell(Start-Process -FilePath \"npx\" -ArgumentList \"remotion\", \"studio\" -WorkingDirectory \"D:\\\\Egaal Software Solutions Ltd\\\\Company Tools\\\\Company Website\\\\Personal-site\\\\egaal-promo\" -WindowStyle Normal)",
       "Bash(python -m pip install requests)",
       "Bash(python generate_vo.py)",
-      "Bash(python *)"
+      "Bash(python *)",
+      "Bash(xargs -I{} basename {})"
     ]
   }
 }
