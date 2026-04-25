@@ -6,7 +6,14 @@
       "Bash(git -C \"C:/Users/khaal/Personal-site\" status --short)",
       "PowerShell(findstr *)",
       "Bash(python scripts/search.py \"premium software agency portfolio dark mockup devices animation\" --design-system -p \"Egaal Software Solutions\")",
-      "Bash(python3 *)"
+      "Bash(python3 *)",
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(npx remotion *)",
+      "PowerShell(Start-Process -FilePath \"npx\" -ArgumentList \"remotion\", \"studio\" -WorkingDirectory \"D:\\\\Egaal Software Solutions Ltd\\\\Company Tools\\\\Company Website\\\\Personal-site\\\\egaal-promo\" -WindowStyle Normal)",
+      "Bash(python -m pip install requests)",
+      "Bash(python generate_vo.py)",
+      "Bash(python *)"
     ]
   }
 }
