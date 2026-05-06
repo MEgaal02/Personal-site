@@ -364,6 +364,19 @@ document.querySelectorAll('.device-viewer').forEach(function(viewer) {
     });
 });
 
+// ═══ SCREEN IMAGE FADE-IN ═══
+(function() {
+    document.querySelectorAll('.mac-photo-screen img, .iphone-photo-screen img').forEach(function(img) {
+        function reveal() { img.style.opacity = '1'; }
+        if (img.complete && img.naturalWidth > 0) {
+            reveal();
+        } else {
+            img.addEventListener('load', reveal);
+            img.addEventListener('error', reveal);
+        }
+    });
+})();
+
 // ═══ SMOOTH SCROLL ═══
 document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
     anchor.addEventListener('click', function(e) {

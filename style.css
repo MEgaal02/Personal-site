@@ -1224,6 +1224,8 @@ body {
     object-position: top center;
     display: block;
     image-rendering: -webkit-optimize-contrast;
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
 
 /* ─── REAL iPHONE PHOTO MOCKUP (cross-device section) ─── */
@@ -1286,6 +1288,8 @@ body {
     object-position: top center;
     display: block;
     image-rendering: -webkit-optimize-contrast;
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
 
 /* Device duo layout — Mac + Phone */
