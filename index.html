@@ -27,7 +27,7 @@
         .terminal-dot:nth-child(1) { background: #ff5f57; } .terminal-dot:nth-child(2) { background: #febc2e; } .terminal-dot:nth-child(3) { background: #28c840; }
         .terminal-title { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); margin-left: 0.5rem; }
         .terminal-body { padding: 1.5rem; font-family: var(--font-mono); font-size: 0.8rem; line-height: 2; }
-        .terminal-line { opacity: 0; animation: typeIn 0.5s ease forwards; }
+        .terminal-line { opacity: 0; animation: typeIn 0.5s ease forwards; overflow-wrap: break-word; word-break: break-word; }
         .terminal-line:nth-child(1) { animation-delay: 1.2s; } .terminal-line:nth-child(2) { animation-delay: 1.5s; } .terminal-line:nth-child(3) { animation-delay: 1.8s; } .terminal-line:nth-child(4) { animation-delay: 2.1s; } .terminal-line:nth-child(5) { animation-delay: 2.4s; } .terminal-line:nth-child(6) { animation-delay: 2.7s; } .terminal-line:nth-child(7) { animation-delay: 3.0s; } .terminal-line:nth-child(8) { animation-delay: 3.3s; } .terminal-line:nth-child(9) { animation-delay: 3.6s; }
         @keyframes typeIn { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: translateX(0); } }
         .t-prompt { color: var(--accent); } .t-key { color: var(--text-dim); } .t-value { color: var(--success); } .t-string { color: #c4b5fd; } .t-bracket { color: var(--text-muted); }
@@ -121,9 +121,9 @@
                 <div class="terminal-line"><span class="t-prompt">$</span> cat company.json</div>
                 <div class="terminal-line"><span class="t-bracket">{</span></div>
                 <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">"company"</span>: <span class="t-string">"Egaal Software Solutions"</span>,</div>
-                <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">"solutions"</span>: <span class="t-string">"CRM, APIs, Mobile, AI"</span>,</div>
+                <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">"solutions"</span>: <span class="t-string">"CRM, APIs, Mobile, AI, Websites"</span>,</div>
                 <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">"industries"</span>: <span class="t-string">"Education, Housing, Security"</span>,</div>
-                <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">"team"</span>: <span class="t-string">"Software Eng. &amp; App Devs"</span>,</div>
+                <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">"team"</span>: <span class="t-string">"Software Eng., App Devs &amp; UI/UX Website Experts"</span>,</div>
                 <div class="terminal-line">&nbsp;&nbsp;<span class="t-key">"status"</span>: <span class="t-value">"Accepting Clients"</span>,</div>
                 <div class="terminal-line"><span class="t-bracket">}</span></div>
             </div>
