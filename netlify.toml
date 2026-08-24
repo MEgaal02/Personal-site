@@ -68,7 +68,7 @@
     Cache-Control = "public, max-age=604800, stale-while-revalidate=86400"
 
 [[headers]]
-  for = "/desktop-app thumbs for project page/*"
+  for = "/desktop-app%20thumbs%20for%20project%20page/*"
   [headers.values]
     Cache-Control = "public, max-age=604800, stale-while-revalidate=86400"
 
