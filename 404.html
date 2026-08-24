@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | Eclypso Software</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="96x96" href="/brand/mark-96.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/brand/mark-180.png">
+    <meta name="theme-color" content="#0a0a0c">
+    <meta name="description" content="That page doesn't exist. Browse Eclypso Software's bespoke software development and cyber security services, or get in touch.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg:#0a0a0c; --accent:#e8c547; --text:#e8e6e1; --text-dim:#8a8a8d; --text-muted:#555558; --border:rgba(255,255,255,.08); }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { background:var(--bg); color:var(--text); font-family:'Outfit',sans-serif; min-height:100vh;
+               display:flex; align-items:center; justify-content:center; text-align:center; padding:2rem; position:relative; overflow-x:hidden; }
+        body::before { content:''; position:absolute; top:-260px; left:50%; transform:translateX(-50%);
+               width:760px; height:760px; border-radius:50%; pointer-events:none;
+               background:radial-gradient(circle,rgba(232,197,71,.10) 0%,transparent 68%); }
+        .container { max-width:620px; position:relative; z-index:1; animation:fadeIn .8s ease; }
+        .code { font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.2em; text-transform:uppercase;
+                color:var(--accent); margin-bottom:1.5rem; }
+        h1 { font-family:'Syne',sans-serif; font-size:clamp(2.6rem,8vw,4.4rem); font-weight:800; line-height:1.05;
+             letter-spacing:-.03em; margin-bottom:1.1rem; }
+        h1 span { color:var(--accent); }
+        p { color:var(--text-dim); font-size:1.06rem; margin-bottom:2.4rem; line-height:1.7; }
+        .actions { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-bottom:3rem; }
+        .btn { font-family:'JetBrains Mono',monospace; font-size:.78rem; letter-spacing:.08em; padding:1rem 2rem;
+               text-decoration:none; font-weight:500; transition:all .3s; display:inline-block; }
+        .primary { background:var(--accent); color:var(--bg); }
+        .primary:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(232,197,71,.25); }
+        .secondary { border:1px solid var(--border); color:var(--text); }
+        .secondary:hover { border-color:var(--accent); color:var(--accent); transform:translateY(-2px); }
+        .links { border-top:1px solid var(--border); padding-top:1.8rem; display:flex; gap:1.6rem;
+                 justify-content:center; flex-wrap:wrap; }
+        .links a { font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.06em;
+                   color:var(--text-muted); text-decoration:none; transition:color .25s; }
+        .links a:hover { color:var(--accent); }
+        .brand { font-family:'JetBrains Mono',monospace; font-size:.72rem; color:var(--text-muted); margin-top:2.4rem; }
+        .brand span { color:var(--accent); }
+        @keyframes fadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="code">Error 404</div>
+        <h1>This page <span>doesn't exist</span>.</h1>
+        <p>The link may be broken, or the page may have moved during our rebrand from Egaal Software to Eclypso Software.</p>
+        <div class="actions">
+            <a href="/" class="btn primary">BACK TO HOME</a>
+            <a href="/contact.html" class="btn secondary">GET IN TOUCH</a>
+        </div>
+        <div class="links">
+            <a href="/crm-development.html">Solutions</a>
+            <a href="/projects.html">Projects</a>
+            <a href="/our-process.html">Our Process</a>
+            <a href="/team.html">Team</a>
+            <a href="/websites.html">Websites</a>
+        </div>
+        <div class="brand"><span>&lt;</span>Eclypso Software<span>/&gt;</span></div>
+    </div>
+</body>
+</html>
