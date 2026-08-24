@@ -1,0 +1,34 @@
+# Eclypso Software Limited — eclypsosoftware.com
+
+[build]
+  publish = "."
+
+# ─── Old brand → new brand ────────────────────────────────────────────────
+# builtbyegaal.com must be attached to this site as a domain alias for these
+# to fire. Netlify already 301s aliases to the primary domain, but that costs
+# two hops (http alias → https alias → https primary), which search engines
+# discount. These rules collapse it to one hop and preserve the path.
+
+[[redirects]]
+  from = "http://builtbyegaal.com/*"
+  to = "https://eclypsosoftware.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://builtbyegaal.com/*"
+  to = "https://eclypsosoftware.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.builtbyegaal.com/*"
+  to = "https://eclypsosoftware.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.builtbyegaal.com/*"
+  to = "https://eclypsosoftware.com/:splat"
+  status = 301
+  force = true
