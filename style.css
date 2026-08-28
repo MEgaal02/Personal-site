@@ -2110,3 +2110,42 @@ nav.scrolled { box-shadow: 0 1px 0 var(--border), 0 8px 40px rgba(0,0,0,0.4); }
     .sec-features-grid { grid-template-columns: 1fr; }
 }
 
+
+/* ═══ SECURITY ASSURANCE BAND (home) ═══ */
+.sec-band-wrap { padding-top: 0; }
+.sec-band {
+    display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 3.5rem;
+    background: linear-gradient(135deg, var(--bg-card) 0%, rgba(232,197,71,0.045) 100%);
+    border: 1px solid var(--border); border-radius: 16px;
+    padding: 3rem 3.5rem; position: relative; overflow: hidden;
+}
+.sec-band::before {
+    content: ''; position: absolute; top: -140px; left: -140px; width: 420px; height: 420px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%); pointer-events: none;
+}
+.sec-stamp { flex-shrink: 0; display: flex; }
+.sec-stamp-ring { transform-origin: 100px 100px; }
+@media (prefers-reduced-motion: no-preference) {
+    .sec-stamp-ring { animation: stampSpin 42s linear infinite; }
+}
+@keyframes stampSpin { to { transform: rotate(360deg); } }
+.sec-band-copy .section-label { margin-bottom: 0.9rem; }
+.sec-band-title {
+    font-size: clamp(1.5rem, 2.6vw, 2.1rem); font-weight: 800;
+    letter-spacing: -0.02em; margin-bottom: 1rem; line-height: 1.2;
+}
+.sec-band-title span { color: var(--accent); }
+.sec-band-copy p { color: var(--text-dim); font-size: 0.98rem; max-width: 560px; margin-bottom: 1.6rem; }
+.sec-band-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.sec-band-pills span {
+    font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.06em;
+    color: var(--accent); background: var(--accent-dim);
+    border: 1px solid rgba(232,197,71,0.22); border-radius: 100px;
+    padding: 0.45rem 1rem; white-space: nowrap;
+}
+@media (max-width: 900px) {
+    .sec-band { grid-template-columns: 1fr; text-align: center; gap: 2rem; padding: 2.5rem 1.5rem; }
+    .sec-stamp { justify-content: center; }
+    .sec-band-copy p { margin-left: auto; margin-right: auto; }
+    .sec-band-pills { justify-content: center; }
+}
