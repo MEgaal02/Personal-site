@@ -2123,12 +2123,8 @@ nav.scrolled { box-shadow: 0 1px 0 var(--border), 0 8px 40px rgba(0,0,0,0.4); }
     content: ''; position: absolute; top: -140px; left: -140px; width: 420px; height: 420px;
     background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%); pointer-events: none;
 }
-.sec-stamp { flex-shrink: 0; display: flex; }
-.sec-stamp-ring { transform-origin: 100px 100px; }
-@media (prefers-reduced-motion: no-preference) {
-    .sec-stamp-ring { animation: stampSpin 42s linear infinite; }
-}
-@keyframes stampSpin { to { transform: rotate(360deg); } }
+.sec-stamp { flex-shrink: 0; display: flex; align-items: center; }
+.sec-stamp img { width: 250px; max-width: 100%; height: auto; opacity: 0.92; }
 .sec-band-copy .section-label { margin-bottom: 0.9rem; }
 .sec-band-title {
     font-size: clamp(1.5rem, 2.6vw, 2.1rem); font-weight: 800;
