@@ -2166,3 +2166,49 @@ nav.scrolled { box-shadow: 0 1px 0 var(--border), 0 8px 40px rgba(0,0,0,0.4); }
     .sec-band-copy p { margin-left: auto; margin-right: auto; }
     .sec-band-pills { justify-content: center; }
 }
+
+/* ═══ ONE ROOF STATEMENT (home) ═══ */
+.one-roof-wrap { padding-top: 0; }
+.one-roof {
+    text-align: center; max-width: 960px; margin: 0 auto;
+    padding: 3.5rem 2rem 3rem; position: relative;
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+}
+.one-roof::before {
+    content: ''; position: absolute; left: 50%; top: -1px; transform: translateX(-50%);
+    width: 120px; height: 1px; background: var(--accent);
+}
+.one-roof .section-label { margin-bottom: 1.4rem; }
+.one-roof-statement {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(1.25rem, 2.2vw, 1.7rem); line-height: 1.45; letter-spacing: -0.01em;
+    color: var(--text); margin: 0 auto 1.2rem; max-width: 860px;
+}
+.one-roof-statement span { color: var(--accent); }
+.one-roof-punch {
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(1.4rem, 2.8vw, 2.1rem); letter-spacing: -0.02em; margin-bottom: 2.6rem;
+}
+.one-roof-punch em { font-style: normal; color: var(--accent); }
+.one-roof-steps {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; position: relative;
+    border: 1px solid var(--border); border-radius: 14px; padding: 1.6rem 1rem;
+    background: linear-gradient(180deg, rgba(232,197,71,0.03) 0%, transparent 100%);
+}
+.one-roof-steps::before {  /* the "roof" */
+    content: ''; position: absolute; left: 8%; right: 8%; top: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0.6;
+}
+.one-roof-step { display: flex; flex-direction: column; align-items: center; gap: 0.55rem; padding: 0.4rem 0.6rem; }
+.one-roof-icon {
+    width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
+    background: var(--accent-dim); border: 1px solid rgba(232,197,71,0.22); color: var(--accent);
+}
+.one-roof-icon svg { width: 20px; height: 20px; }
+.one-roof-step-title { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); }
+.one-roof-step-desc { font-size: 0.82rem; color: var(--text-dim); line-height: 1.5; max-width: 200px; }
+@media (max-width: 900px) {
+    .one-roof { padding: 2.6rem 1rem 2.4rem; }
+    .one-roof-steps { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) { .one-roof-steps { grid-template-columns: 1fr; } }
